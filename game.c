@@ -58,12 +58,13 @@ int main(int argc, char *argv[])
 			}
 			case 4:
 			{
-				puts("room4");
-				break;
+//adonay				
+				puts("room4");				break;
 			}
 			case 5:
 			{
 				puts("room5");
+				//Sathwika
 				break;
 			}
 			case 6:
@@ -88,6 +89,7 @@ int main(int argc, char *argv[])
 
 			case 8:
 			{
+			//yyong 
 				puts("room8");
 				break;
 			}
@@ -98,27 +100,34 @@ int main(int argc, char *argv[])
 			}
 			case 10:
 			{
+//Angel
 				puts("room10");
 				break;
 			}
+			
 			case 11:
 			{
 				puts("room11");
+//Cecilia
 				break;
 			}
 			case 12:
 			{
 				puts("room12");
+//DanielR.
 				break;
 			}
 			case 13:
 			{
 				puts("room13");
+//sidney
 				break;
 			}
 			case 14:
 			{
 				puts("room14");
+// Omar Flores
+				printf("This is Omar's Room");
 				break;
 			}
 			case 15:
@@ -134,6 +143,7 @@ int main(int argc, char *argv[])
 			}
 			case 17:
 			{
+//Alexis Gutierrez
 				puts("room17");
 				break;
 			}
