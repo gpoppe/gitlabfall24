@@ -15,7 +15,7 @@
 
 //place function prototypes here
 
-
+void case16();
 
 
 
@@ -129,6 +129,7 @@ int main(int argc, char *argv[])
 			case 16:
 			{
 				puts("room16");
+				case16();
 				break;
 			}
 			case 17:
@@ -338,5 +339,105 @@ int main(int argc, char *argv[])
 }
 
 //place functions here
+void case16()
+{
+    printf("---------------------------------------------\n");
+    // Bibek Poudel
+    printf("Welcome to room 16. This means you escaped the water trap.");
+    printf("There are multiple more traps here if you fall for these trap, You will be sent back");
+    printf("---------------------------------------------\n");
+    printf("Your first quest starts here\nGuess the Square of the number between 0 to 10\n");
 
+    // Quest 1 guess a number
+    int random_number = rand() % 10;
+    printf("The number is %d\n", random_number);
+    printf("\n");
+    int guess;
+    scanf("%d", &guess);
+    if (guess == random_number ^ 2)
+    {
+        printf("You have passed the first quest\nGreat now time for next one\n");
+    }
+    else
+    {
+        printf("You have failed the first quest\n");
+        return;
+    }
+    printf("---------------------------------------------\n");
+    // Guess a random animal
+    printf("From the given detail guess the Animal\n");
+    printf("I am found in the deserts of Africa and the Middle East. I have long legs and a hump on my back, which helps me survive long periods without water. I am known for my ability to carry heavy loads and am often called the 'Ship of the Desert.'\n");
+    char animal[30];
+    scanf("%s", animal);
+    if (strcmp(animal, "camel") == 0 || strcmp(animal, "Camel") == 0)
+    {
+        printf("You have passed the second quest\nGreat now time for next one\n");
+    }
+    else
+    {
+        printf("You have failed the second quest\n");
+        return;
+    }
+    printf("---------------------------------------------\n");
+
+    // Capital of Australia
+    printf("You seem to be very intelligent\nHere is a difficult question for you\n");
+    printf("What is the capital of Australia?\n");
+    printf("a) Sydney\nb) Melbourne\nc) Canberra\nd) Brisbane\n");
+
+    char answer;
+    scanf(" %c", &answer); // Notice the space before %c
+
+    if (answer == 'c')
+    {
+        printf("You have passed the third quest\nGreat now time for next one\n");
+    }
+    else
+    {
+        printf("You have failed the third quest\n");
+        return;
+    }
+    printf("---------------------------------------------\n");
+    // Puzzle questions
+    printf("Great now the next one");
+    printf("You need to focus on this question it is tricky\n");
+    printf("What is the total number when you multiply all the numbers in a telephone keypad?\n");
+    int guessTotal;
+    scanf("%d", &guessTotal);
+    if (guessTotal == 0)
+    {
+        printf("You have passed the fourth quest\nGreat now time for next one\n");
+    }
+    else
+    {
+        printf("You have failed the fourth quest\nThere is 0 in the number pad which makes the total to 0.\n");
+        return;
+    }
+    printf("---------------------------------------------\n");
+    // Question with list
+    char *items[] = {"Apple", "Banana", "Cherry", "Chocolate", "Grapes"};
+    printf("Here are some things which can be in the referegerator in the right corner.\nYou should pick the item that should not belong in the fridge.\nIf you miss, You will loose the game\n");
+
+    int num_items = sizeof(items) / sizeof(items[0]);
+
+    for (int i = 0; i < num_items; i++)
+    {
+        printf("%d) %s\n", i, items[i]);
+    }
+
+    int input;
+    scanf("%d", &input);
+    if (input == 3)
+    {
+        printf("You have passed the fifth quest\n");
+    }
+    else
+    {
+        printf("You have failed the fifth quest\n");
+        return;
+    }
+    printf("*******************| You have Exited from the room |*******************\n");
+
+
+}
 
