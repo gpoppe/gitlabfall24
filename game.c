@@ -15,7 +15,7 @@
 
 //place function prototypes here
 
-
+void mysteryItemGame();
 
 
 
@@ -70,7 +70,8 @@ int main(int argc, char *argv[])
 			case 6:
 			{
 				//anushka
-				puts("room6");
+				puts("Welcome to the Mystery Item Game!");
+				mysteryItemGame();
 				break;
 			}
 
@@ -349,4 +350,105 @@ int main(int argc, char *argv[])
 
 //place functions here
 
+void mysteryItemGame()
+{
+	char items[5][20] = {"treasure key", "magic potion", "ancient box", "old map", "fortune coin"};
+	int bagCapacity = 3;
+	int bagCount = 0;
+
+	while(1)
+	{
+		puts("You find yourself in a room filled with dust and cobwebs.");
+		puts("As you look around you see a book shelf with a few books and a few empty shelves.");
+		int randomEvent = rand() % 5 + 1; 
+		int randomItem = rand() % 5 + 1; 
+		switch (randomEvent)
+		{
+			case 1:
+				printf("You found a %s hidden in a crack of the book shelf!\n", items[randomItem - 1]);
+				break;
+			case 2:
+				printf("A %s glints in the shadows!\n", items[randomItem - 1]);
+				break;
+			case 3:
+				printf("You discover a %s beneath some dust!\n", items[randomItem - 1]);
+				break;
+			case 4:
+				printf("You notice a %s tucked away behind a loose brick!\n", items[randomItem - 1]);
+				break;
+			default:
+				printf("Nothing interesting happens this time.\n");
+				break;
+		}
+
+		char choice;
+
+		if (randomEvent != 5) 
+		{
+			puts("Would you like to keep the item? (y/n)");
+			
+			scanf(" %c", &choice);
+			if(choice == 'y')
+			{
+				if(bagCount < bagCapacity)
+				{
+					printf("You put the %s in your bag.\n", items[randomItem - 1]);
+					bagCount++;
+				}
+				else
+				{
+					puts("Your bag is full! Would you like to empty your bag and keep the item? (y/n)");
+					scanf(" %c", &choice);
+					if(choice == 'y')
+					{
+						puts("You empty your bag and put the new item in.");
+						bagCount = 1; 
+					}
+					else
+					{
+						puts("You discard the item.");
+					}
+				}
+			}
+			else
+			{
+				puts("You leave the item behind.");
+			}
+		}
+		
+
+		puts("Would you like to search the room again? (y/n)");
+		scanf(" %c", &choice);
+		if(choice != 'y')
+		{
+			puts("You notice two more paths to explore:");
+			puts("1. A narrow staircase leading downwards.");
+			puts("2. A hidden door behind the bookshelf.");
+			puts("Which path do you choose? (1/2)");
+			int roomChoice;
+			scanf("%d", &roomChoice);
+			if (roomChoice == 1)
+			{
+				puts("You descend the staircase and find a hidden chamber.");
+				puts("It leads back to the room with the 55 doors.");
+				puts("Thanks for playing!");
+				break;
+			}
+			else if (roomChoice == 2)
+			{
+				puts("You open the hidden door and discover a secret passage.");
+				puts("It leads to a room with a treasure chest.");
+				puts("You open the chest and find a golden crown!");
+				puts("Congratulations!");
+				break;
+			}
+			else
+			{
+				puts("Invalid choice, you stay put.");
+			}
+		}
+	}
+
+	
+}
 
