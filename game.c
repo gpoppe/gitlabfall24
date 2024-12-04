@@ -189,6 +189,7 @@ int main(int argc, char *argv[])
 			}
 			case 26:
 			{
+// camila ramirez mendoza
 				puts("room26");
 				break;
 			}
