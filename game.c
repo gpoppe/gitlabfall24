@@ -16,7 +16,7 @@
 
 //place function prototypes here
 
-
+void exploreRoom(int roomChoice);
 void room11Challenge(void);
 
 int RM12DiceRoll();
@@ -234,11 +234,132 @@ int main(int argc, char *argv[])
 			}
 //
 			case 9:
+			
 			{
-//Serina			
-				puts("room9");
-				break;
+			srand(time(0));
+
+			char *rooms[] = {
+			"The Castle", 
+			"Haunted Mansion",
+			"Pirates Ship",
+			"Ursula's Cave",
+			"Tiana's Bayou",
+			};
+
+			printf("Welcome to room 9 games: \n");
+
+			  for (int i = 0; i < 5; i++)
+                {
+                        printf("Entering %s...\n", rooms[i]);
+			
+			switch (i + 1){
+		case 1:
+			printf("You have entered the castle...\n");
+			printf("A knight is blocking your path, asking you to solve a riddle.\n");
+			printf("What is the name of the princess who was given the posion apple to?\n");
+			printf("1. Aurora\n 2. Snow White\n 3. Belle\n");
+
+			int answer1;
+			printf("Enter your choice (1-3): ");
+			scanf("%d", &answer1);
+			if(answer1 == 2)
+			{
+				printf("Correct! The knight let's you through.\n");
 			}
+			else
+			{
+				printf("That is incorrect. The night battled you and you barely made it out.\n");
+			}
+			break;
+
+		case 2:
+			printf("You have entered the Haunted Mansion.\n");
+			printf("Ghosts have surrounded you and challenged you to a guessing game.\n");
+			int target = rand() % 10 + 1;
+			int guess;
+			printf("Guess the ghost's number(1-10): \n");
+		
+			while(1)
+			{
+				scanf("%d", &guess);
+				if (guess == target)
+				{
+					printf("Correct! The ghosts lets you through.\n");
+					break;
+				}
+				else if (guess < target)
+				{
+					printf("Too low. Try again\n");
+				}
+				else
+				{
+					printf("Too High. Try again: \n");
+				}
+			}
+			break;
+
+		case 3:
+			printf("You entered on to the Pirates Ship...\n");
+			printf("The Pirates present you with a math problem.\n");
+			int a = rand() % 10 +1;
+			int b = rand() % 10 +1;
+			int answer3;
+
+			printf("Solve this equation: %d + %d = ?\n", a, b);
+			scanf("%d", &answer3);
+
+			if (answer3 == a + b)
+			{
+			printf("That is correct the pirates let you go with sometreasure.\n");
+			}
+			else
+			{
+			printf("That is incorrect. The piraates take you to a cell.\n");
+			}
+			break;
+
+		case 4:
+			printf("You entered Ursula's cave...\n");
+			printf("She trapped you in her tentacles, and wants to play a game.\n");
+			printf("What did ursula take from Ariel?\n");
+			printf("1. voice\n 2.her bag\n 3. her hair\n");
+			int answer4;
+			printf("Enter your choice: ");
+			scanf("%d", &answer4);
+			if (answer4 ==1)
+			{
+			printf("Correct. She let you go.\n");
+			}
+			else
+			{ 
+			printf("Wrong. She tried to keep you but you barely escaped her and her eels.\n");
+			} 
+			break;
+
+		case 5:
+			printf("You entered Tiana's Bayou and the shadow man appeared.\n");
+			printf("He wants you to choose a card (1, 2, or 3): \n");
+			int choice =  rand() % 3 + 1;
+			int userChoice;
+			scanf("%d", &userChoice);
+			if (userChoice == choice)
+			{
+			printf("You chose the correct card. He let you pass.\n");
+			}
+			else
+			{
+			printf("Wrong card. He sent his friends from the other side to get you, but you managed to run away.\n");}
+			break;
+	
+		default:
+			printf("Please try again.\n");
+			break;
+			}
+		}	
+		printf("Thank you for playing.\n");
+		
+		break;
+		}
 			case 10:
 			{
 //Angel
