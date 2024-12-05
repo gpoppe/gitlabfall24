@@ -327,6 +327,7 @@ void displayClues(char *clues[], int cluesFound);
 }
 
 //place functions here
+
 void Detectivegame() {
     srand(time(NULL));
     int choice;
