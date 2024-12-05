@@ -19,8 +19,7 @@ void Detectivegame();
 int randomOutcome();
 void displayClues(char *clues[], int cluesFound);
 
-	int main(int argc, char *argv[])
-{
+	int main(int argc, char *argv[]){
 	int choice = 0;
 	char name[30] = "bob";
 	srand(time(NULL));
