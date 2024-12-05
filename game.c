@@ -1,6 +1,6 @@
 //contributors
 //GP
-//
+//Yyong Taing
 //
 
 
@@ -16,7 +16,7 @@
 //place function prototypes here
 
 void room3(void);
-
+void room8(void);
 
 
 int main(int argc, char *argv[])
@@ -91,7 +91,8 @@ int main(int argc, char *argv[])
 			case 8:
 			{
 			//yyong 
-				puts("room8");
+				puts("Welcome to 888 Secret Room!");
+				room8();
 				break;
 			}
 //
@@ -354,6 +355,97 @@ int main(int argc, char *argv[])
 
 //place functions here
 
+//Yyong's Function
+void room8(void)
+{
+        puts("There are five options for you to choose from in my fun little room:");
+        const char *actions[]=
+        {
+                "1.Fight a monster\n",
+                "2.Walk to the desk\n",
+                "3.Talk to the glowing red orb\n",
+                "4.Pick up a gas lamp\n",
+                "5.Scream for help\n"
+        };
+       
+        int choice;
+	const int num= 5;
+	int guess = 0;
+	char answer[]= "a secret";
+       	char riddle[20];	
+
+	srand(time(NULL));
+
+        while(1)
+        {
+		int randNum = 1+ (rand()%5);
+		for(int i = 0;i < num;i++)
+		{
+			printf("%s", actions[i]);
+		}
+		printf("What will you choose?\n");
+		scanf("%d", &choice);
+		while (getchar() != '\n');
+
+		switch(choice)
+		{
+			case 1:
+				puts("A MONSTER HAS APPEARED!");
+				puts("Pick a number between 1 and 5, if you choose right, you win the fight!"); 
+	
+				scanf("%d",&guess);
+
+				if(guess == randNum)
+				{
+					puts("CONGRATS YOU HAVE DEFEATED THE MONSTER!");
+				}
+				else
+				{
+					puts("The monster has won :(");
+				}
+				break;
+			case 2:
+				puts("A glowing scroll has appearred on the desk. The writing is too small to read.");
+				puts("*Looks in drawer* AH a magnifying glass!");
+				puts("It seems to be a riddle!");
+				puts("\"If you have me, you will want to share me. If you share me, you will no longer have me");
+				puts("What is your answer?");
+				fgets(riddle, sizeof(riddle), stdin); 
+				riddle[strcspn(riddle, "\n")] = '\0';
+
+                	
+                		if (strcasecmp(answer, riddle) == 0) 
+				{
+				    	puts("YOU'VE SOLVED THE RIDDLE!");
+
+				} 
+				else 
+				{
+		    			puts("UH OH, You've guessed wrong, the scroll has vanished!");
+                		}
+               			 break;
+			case 3:
+                		puts("Red Orb:\"EW A HUMAN, GET OUT OF MY SIGHT!!!!!\"");
+                		puts("*A TRAPPED DOOR OPENED BENEATH YOU*");
+                		puts("Red Orb:\"MUAHAHHAAH, GOOD RIDDANCE\"");
+                		break;
+			case 4:
+				puts("");
+				break;
+			
+			case 5:
+				puts(" ");
+				break;
+
+            		default:
+                		puts("Please choose one of the options.");	
+}
+		if(choice == 3)
+		{		 
+			break;
+		}
+}
+}
 //===============================================================================================
 //Nestor's Function
 void room3(void)
