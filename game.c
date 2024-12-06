@@ -2113,9 +2113,127 @@ int main(int argc, char *argv[])
 			}
 			case 29:
 			{
-				puts("room29");
-				break;
+				puts("Welcom to Room 29, the Haunted Mansion Adventure!");
+				int roomChoice;
+				char continuePlaying = 'y';
+
+				while (continuePlaying == 'y') {
+					puts("\nYou stand in the main hall of the Haunted Mansion. Which 5 rooms will you pick?");
+					puts("1. The Library");
+					puts("2. The Kitchen");
+					puts("3. The Cellar");
+					puts("4. The Attic");
+					puts("5. The Courtyard");
+					puts("Choose a room between 1 and 5, or press 0 to return to the main hall.");
+					scanf("%d", &roomChoice);
+
+					switch (roomChoice) {
+						case 1: {
+								puts("\nYou enter the Library, where ancient books whispter dark secrets.");
+								puts("You notice a glowing book. Do you take it? (y/n)");
+								char takeBook;
+								scanf(" %c", &takeBook);
+								if (takeBook =='y') {
+									puts("It's glowing brighter!");
+									int riddleAnswer;
+									puts("A voice asks 'I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?'");
+									puts("1. A shadow\n2. An echo\n3. A ghost");
+									scanf("%d", &riddleAnswer);
+								        if (riddleAnswer == 2) {
+										puts("The book reveals a hidden key! You take it and leave the room.");
+									} 
+									else {
+										puts("The book bursts into flames! You run out of the library, empty-handed.");
+									}
+								} else {
+									 puts("You leave the book and return to the hall.");
+								}
+								break;
+							}
+							case 2: {
+									puts("\nYou step into the Kitchen of Whispers. Pots and pans clatter on their own.");
+									puts("You see a cauldron bubbling with a strange liquid.");
+									puts("Will you taste the liquid? (y/n)");
+									char tasteLiquid;
+									scanf(" %c", &tasteLiquid);
+									if (tasteLiquid == 'y') {
+										puts("The liquid grants you a vision of a hidden treasure in the mansion!");
+										int treasureRoom = 1 + rand() % 5; // Randomly select a room where the treasure is hidden
+														    									 printf("The vision shows the treasure is in Room %d. You return to the hall to find it.\n", treasureRoom);
+									} else {
+										puts("You decide not to taste it and leave the kitchen.");
+									}
+									break;
+								}
+							 case 3: {
+									 puts("\nYou descend into the Cellar of Secrets. It's dark and damp, and you hear faint whispers.");
+									 puts("A locked chest lies in the corner.");
+									 int chestCode = rand() % 100; // Generate a random two-digit code
+									 int guess;
+									 puts("You must guess the two-digit code to open the chest. You have three attempts.");
+									 for (int attempts = 3; attempts > 0; --attempts) {
+										 printf("Enter your guess: ");
+										 scanf("%d", &guess);
+										 if (guess == chestCode) {
+											 puts("The chest opens, revealing a golden artifact! You return to the hall with your prize.");
+											 break;
+										 } else if (attempts > 1) {
+											 puts("Wrong code! Try again.");
+										 }else {
+											puts("The chest remains locked. You leave the cellar.");
+										 }
+									 }
+									 break;
+								 }
+							 case 4: {
+									 puts("\nYou climb into the Attic of Apparitions.");
+									 puts("A ghostly figure appears and offers you a choice.");
+									 puts("1. Accept challenge\n2. Ignore and leave");
+									 int ghostChoice;
+									 scanf("%d", & ghostChoice);
+									 if (ghostChoice == 1) {
+										 int diceRoll = 1 + rand() % 6;
+										 printf("The ghost challenges you to roll 5 or 6 on a die to win.\nYou rolled: %d\n", diceRoll);
+										 if (diceRoll >= 5) {
+											 puts("You won a gem!");
+										 } else {
+											 puts("You leave empty-handed.");
+										 }
+									 } else {
+										 puts("You avoid the challenge.");
+									 }
+									 break;
+								 }
+							   case 5: {
+									   puts("\nYou walk into the Courtyard.");
+									   puts("A mysterios figure offers a trade: an item from your inventory for something unknown.");
+									   puts("Make the trade? (y/n)");
+									   char tradeChoice;
+									   scanf(" %c", &tradeChoice);
+									   if (tradeChoice == 'y') {
+										   puts("The figure gives you an amulet!");
+									   } else {
+										   puts("You decline.");
+									   }
+									   break;
+								   }
+							   case 0:
+								   puts("You leave and return to the Main Hall.");
+								   continuePlaying = 'n';
+								   break;
+							   default:
+								   puts("Invalid choice. Please choose a room between 1 and 5, or 0 to exit.");
+					}
+
+					if (roomChoice !=0) {
+						puts("\nWould you like to explore another room? (y/n)");
+						scanf(" %c", &continuePlaying);
+					}
+					puts("Thanks for playing!");
+					break;
+				}
 			}
+
 			case 30:
 			{
 				puts("you enter room30 \n");
@@ -4438,4 +4556,3 @@ void room24(void) {
     printf("Exiting Room 24. Returning to the main hall.\n");
 }
 //========
-
