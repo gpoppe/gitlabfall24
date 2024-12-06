@@ -970,6 +970,7 @@ void room11Challenge(void) {
     int choice;
     int randomCode1=(rand()%10)+1;
     int randomCode2=(rand()%10)+1;
+    int attempts=4;
     int guess1, guess2;
     char *hints[3]={
         "The codes are both single-digit numbers.",
@@ -1040,23 +1041,82 @@ void room11Challenge(void) {
                 puts("\nYou failed to guess the code. The chest remains locked, and the water rises. You drowned!");
                 return;
             }
-            case 2:
-                puts("You search the room, but all you find are old dusty books and cobwebs. Nothing useful.");
+		   case 2:{
+                puts("\nYou search the room and find a dusty old book. Inside, you discover the first code is revealed to you!");
+                printf("The first code is %d. Now guess the second code.\n", randomCode1);
+
+                printf("Enter your guess for the second code: ");
+                scanf("%d", &guess2);
+
+                if(guess2==randomCode2){
+                    puts("\nYou guessed correctly! The chest opens, and you escape with the treasure!");
+                    return;
+                }else{
+                    attempts--;
+                    printf("Wrong guess! . You have %d attempt(s) left.\n", attempts);
+                }
                 break;
-            case 3:
-                puts("The spirit guarding the room says: 'I can tell you a secret, but you must prove your worth by guessing both codes correctly.'");
+            }
+
+            case 3:{
+                puts("\nThe spirit guarding the room appears and says: 'Answer my riddle, and I shall reveal one of the codes.'");
+                puts("Riddle: 'I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?'");
+                char answer[50];
+                scanf("%s", answer);
+
+                if(strcasecmp(answer, "echo")==0){
+                    printf("Correct! The first code is %d. Now guess the second code.\n", randomCode1);
+                    printf("Enter your guess for the second code: ");
+                    scanf("%d", &guess2);
+
+                    if(guess2==randomCode2){
+                        puts("\nYou guessed correctly! The chest opens, and you escape with the treasure!");
+                        return;
+                    } else {
+                        attempts--;
+                        printf("Wrong guess!. You have %d attempt(s) left.\n", attempts);
+                    }
+                } else {
+                    puts("Wrong answer! You wasted your time.");
+                }
                 break;
-            case 4:
-                puts("You try the door, but it's locked. There's no way to open it without solving the puzzle.");
+            }
+
+            case 4:{
+                puts("\nYou attempt to escape through the door. You have one attempt to guess the correct number (1-10).");
+                printf("Enter your guess: ");
+                scanf("%d", &guess1);
+
+                if(guess1 ==randomCode1){
+                    puts("\nThe door opens, and you escape! You leave the room victorious!");
+                    return;
+                }else{
+                    puts("\nThe door remains locked. You drowned!");
+                    return;
+                }
                 break;
-            case 5:
-                puts("You attempt to force open the chest with a knife, but it doesn't work. The chest remains locked.");
+            }
+
+            case 5:{
+                puts("\nYou try to pry open the chest with a knife. There’s a 50/50 chance of success...");
+                int knifeAttempt=rand() % 2; // Randomly determine success or failure
+                if(knifeAttempt==1){
+                    puts("You succeed in opening the chest! The gold is yours, and you escape!");
+                    return;
+                }else{
+                    puts("The knife breaks, and the chest remains locked and you drown.");
+                    return;
+                }
                 break;
+            }
+
             default:
                 puts("Invalid choice. Try again.");
+                break;
         }
     }
 }
+
 
 
 int RM12DiceRoll()
@@ -1227,6 +1287,9 @@ void room3(void)
             printf("Invalid choice. Please choose between 1 and 5.\n");
     }
 }
+
+//======================================================================================
+
 
 
 //===============================================================================================
@@ -1837,5 +1900,6 @@ void case16()
 
 
 }
+
 
 
