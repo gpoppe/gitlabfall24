@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
 			case 8:
 			{
 			//yyong 
-				puts("Welcome to 888 Secret Room!");
+				puts("*YOU HAVE ENTERED LUCKY ROOM 8!*");
 				room8();
 				break;
 			}
@@ -358,7 +358,7 @@ int main(int argc, char *argv[])
 //Yyong's Function
 void room8(void)
 {
-        puts("There are five options for you to choose from in my fun little room:");
+        puts("There are five options for you to choose from in this lucky room:");
         const char *actions[]=
         {
                 "1.Fight a monster\n",
@@ -386,6 +386,7 @@ void room8(void)
 		printf("What will you choose?\n");
 		scanf("%d", &choice);
 		while (getchar() != '\n');
+		printf("\n");
 
 		switch(choice)
 		{
@@ -397,15 +398,15 @@ void room8(void)
 
 				if(guess == randNum)
 				{
-					puts("CONGRATS YOU HAVE DEFEATED THE MONSTER!");
+					puts("CONGRATS YOU HAVE DEFEATED THE MONSTER!\n");
 				}
 				else
 				{
-					puts("The monster has won :(");
+					puts("OH NO! The monster beat you & stole your pants!\n");
 				}
 				break;
 			case 2:
-				puts("A glowing scroll has appearred on the desk. The writing is too small to read.");
+				puts("A glowing scroll has appearred on the desk, but the writing is too small to read.");
 				puts("*Looks in drawer* AH a magnifying glass!");
 				puts("It seems to be a riddle!");
 				puts("\"If you have me, you will want to share me. If you share me, you will no longer have me");
@@ -413,28 +414,33 @@ void room8(void)
 				fgets(riddle, sizeof(riddle), stdin); 
 				riddle[strcspn(riddle, "\n")] = '\0';
 
-                	
                 		if (strcasecmp(answer, riddle) == 0) 
 				{
-				    	puts("YOU'VE SOLVED THE RIDDLE!");
+				    	puts("YOU'VE SOLVED THE RIDDLE!\n");
 
 				} 
 				else 
 				{
-		    			puts("UH OH, You've guessed wrong, the scroll has vanished!");
+		    			puts("UH OH, You've guessed wrong, the scroll has vanished!\n");
                 		}
                			 break;
 			case 3:
-                		puts("Red Orb:\"EW A HUMAN, GET OUT OF MY SIGHT!!!!!\"");
+				puts("Hi, I was hopi-");
+                		puts("Red Orb:\"EWW A HUMAN, GET OUT OF MY SIGHT!!!!!\"");
                 		puts("*A TRAPPED DOOR OPENED BENEATH YOU*");
-                		puts("Red Orb:\"MUAHAHHAAH, GOOD RIDDANCE\"");
+                		puts("Red Orb:\"MUAHAHHAAHA, GOOD RIDDANCE!!!\"\n");
                 		break;
 			case 4:
-				puts("");
+				puts("You picked up the gas lamp, but nothing happened...");
+				puts("*Puts it back down*\n");
 				break;
 			
 			case 5:
-				puts(" ");
+				puts("HEEEEEEEELLLLLLLLLLLLLLPPPPPP!!");
+				puts("*a lady in a white dress appears and firmly hugs you*");
+				puts("*Without saying a word, she vanishes just as fast as she came*");
+				puts("what the hell was that????");
+				puts("*continues screaming, hopefully she comes back*\n");
 				break;
 
             		default:
