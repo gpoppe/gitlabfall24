@@ -305,7 +305,6 @@ int main(int argc, char *argv[])
 //Angel
 				int userC= 0;
 				int badCount=0;
-				int theBox[]={1,2,3,4,5};
 				puts("Welcome to room10");
 				puts("In front of you there is a desk with three crystals on the table");
 				puts("A note is found under the crystal it reads: There is no escape only Games");
