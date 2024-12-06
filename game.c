@@ -37,6 +37,11 @@ void room3(void);
 void mysteryItemGame(void);
 
 
+int room10bad(int num);
+int room10Red(int red);
+int room10Blue(int blue);
+
+
 void case16(void);
 
 void room30(void);
@@ -298,7 +303,47 @@ int main(int argc, char *argv[])
 			case 10:
 			{
 //Angel
-				puts("room10");
+				int userC= 0;
+				int badCount=0;
+				int theBox[]={1,2,3,4,5};
+				puts("Welcome to room10");
+				puts("In front of you there is a desk with three crystals on the table");
+				puts("A note is found under the crystal it reads: There is no escape only Games");
+				start:
+				puts("You can now only pick one of the two crystals they are red (1) and blue(2) ");
+				scanf("%d", &userC);
+				if(userC ==1)
+				{
+					badCount = room10Red(badCount);
+					 if(badCount==3){
+                                                break;
+                                        }
+                                        else{
+                                                goto start;
+                                        }
+
+				}
+				else if(userC == 2)
+				{
+					badCount = room10Blue(badCount);
+					 if(badCount==3){
+                                                break;
+                                        }
+                                        else{
+                                                goto start;
+                                        }
+				}
+				else 
+				{
+					badCount = room10bad(badCount);
+					if(badCount==3){
+						break;
+					}
+					else{
+						goto start;
+					}
+
+				}	
 				break;
 			}
 			
@@ -1615,6 +1660,153 @@ void room3(void)
 
 
 //===============================================================================================
+
+//
+
+int room10bad(int num)
+{
+	puts("You have inputted an inocorrect input");
+	num++;
+	switch(num)
+	{
+		case 1:
+			{
+				puts("----------------------------------------------------------");
+				puts("This has been your first offense a voice shouts");
+			       	puts("DO NOT LET IT HAPPEN AGAIN");
+				puts("----------------------------------------------------------");
+				break;
+			}
+		case 2:
+			{
+				puts("----------------------------------------------------------");
+				puts("This is the second time you inputed a wrong option");
+				puts("You have one last chance to comply or be forced out");
+				puts("----------------------------------------------------------");
+				break;
+			}
+		default:
+				puts("----------------------------------------------------------");
+				puts("this is the end for you a strong wind pushes you out");
+				puts("----------------------------------------------------------");
+	}
+	return num;
+}
+int room10Red(int red){
+	srand(time(NULL));
+	int guess=0;
+	int Cards [5];
+	for(int i =0; i<5; i++)
+	{
+		Cards [i]= rand() % 13+1;	
+		
+	}
+	puts("-----------------------------------------------------------------");
+	puts("You have choosen the red stone");
+	puts("The Stone Glows with power and all of a sudden you are transported to a diffrent room");
+	puts("There is a man with a deck of cards he lays out 4 cards and wants to play a game");
+	puts("each card has a possible number from 1 -13");
+	for(int i=0; i<4;i++)
+	{
+		start:
+		printf("Current Card number: %d\n", Cards[i]);	
+		puts("Is the next Card Higher(1) or Lower(2)?");
+		scanf(" %d", & guess);
+		if((guess == 1 && Cards[i+1]>Cards[i])||(guess == 2 && Cards[i+1]< Cards[i]))
+		{
+			printf("Correct! the answer was : %d\n", Cards[i+1]);
+		}
+		else if((guess == 1 && Cards[i+1]<Cards[i])||(guess == 2 && Cards[i+1]> Cards[i]))
+		{
+			printf("Sorry you are worng the answer is: %d\n", Cards[i+1]);	
+		}
+		else
+		{
+			red = room10bad(red);
+			 if(red==3)
+			 {
+				 break;
+                         }
+                         else
+			 {
+                            goto start;
+                         }
+			
+		}
+
+	}
+	puts("You have completed the game I hope you had fun");
+	red==3;
+	puts("You will now be taken back to the main room ");
+	puts("-----------------------------------------------------------------");
+	return red;
+}
+int room10Blue(int blue)
+{
+	char user = 'y';
+	puts("-----------------------------------------------------------------");
+	puts("You enter a realaxing hot spring there you decide to get in the water to relax");
+	puts("The water is warm and you feel better ");
+	printf("A nice elf says \"You have commited %d errors have a glass water since you are still here \"\n", blue);
+	while(1){
+		
+		puts("do you take the water (y) yes or no (n)");
+		scanf(" %c", &user);
+
+		if(user == 'y')
+		{
+			blue = 0;
+			puts("-----------------------------------------------------------------");
+			puts("somthing feels diffrent about that water ");
+			puts("the elf seems happy to have found a friend");
+			puts("The question now is are you happy with your new friend");
+			puts("either way it doesnt matter as you are taken back to room 10");
+			break;	
+		}
+		else if(user == 'n')
+		{
+			puts("-----------------------------------------------------------------");
+			puts("The elf seems upset with you and slightly offened ");
+			printf("\"can you please take that door and leave\" the elf says\n");
+			puts("A magic door apeared out of nowhere you open it and go back to room 10");
+			break;
+		}
+		else
+		{
+			printf("\"I did not take you as a rebel I respect that\" says the elf\n");
+			blue = room10bad(blue);
+                         if(blue<3)
+                         {
+			 	puts("you are sent back to room 10.");
+				break;
+			 }
+     
+
+		}
+	}
+	return blue;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void Detectivegame() {
     srand(time(NULL));
     int choice;
@@ -2222,6 +2414,7 @@ void case16()
 
 
 }
+
 
 
 
