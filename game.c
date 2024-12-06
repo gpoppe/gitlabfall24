@@ -27,7 +27,7 @@ int rps_game(char handGuess, char cpuGuess);
 void room3(void);
 void mysteryItemGame(void);
 
-
+void case16(void);
 
 int main(int argc, char *argv[])
 {
@@ -425,6 +425,7 @@ int main(int argc, char *argv[])
 			case 16:
 			{
 				puts("room16");
+				case16();
 				break;
 			}
 			case 17:
@@ -1007,4 +1008,105 @@ void room3(void)
 
 
 //===============================================================================================
+
+void case16()
+{
+	printf("------------------------------\n");
+	printf("Welcome to room 16. This room is full of riddles and quizes. You need to solve all of them to escape from here\n");
+	printf("Your first quest starts now. \nGuess the square of the following number\n");
+
+	int random_number = rand() % 10;
+	printf("The number is %d\n", random_number);
+	printf("\n");
+	int guess;
+	scanf("%d", &guess);
+	if (guess == random_number ^ 2)
+	{
+		printf("You seem to be smart not onto next one\n");
+	}else
+	{
+		printf("You got that wrong. You are thrown out from the room\n");
+		return;
+	}
+
+	printf("------------------------------\n");
+
+	printf("Now next quest, I will give you some clue, If you guess correct, You can pass onto next one\n");
+	printf("From the given details, guess the animal\n");
+	printf("I am found in the deserts of Africa and the Middle East. I have long legs and a hump on my back, which helps me survive long periods without water. I am known for my ability to carry heavy loads and am often called the 'Ship of the Desert.'\n");
+	char animal[30];
+	scanf("%s", animal);
+	if (strcmp(animal, "camel") == 0 || strcmp(animal,"Camel") == 0)
+	{
+		printf("You guessed correct. The animal was camel\n");
+	}
+	else
+	{
+		printf("You are not intelligent enough. Return to the main hall\n");
+		return;
+	}
+
+	printf("------------------------------\n");
+
+	printf("Now Geography question, Guess the capital of Australia\n");
+	printf("a) Sydney\nb) Melbourne\nc) Canberra\nd) Brisbane\n");
+
+	char answer;
+	scanf(" %c", &answer);
+	if (answer == 'c')
+	{
+		printf("You seem to have good geography knowledge. Now onto next question\n");
+	}
+	else
+	{
+		printf("You failed on the third stage");
+		return;
+	}
+
+
+	 printf("------------------------------\n");
+
+	 printf("This is tricky now. Pay attention\n");
+	 printf("What is the total of all the number multiplied on a telephone number pad\n");
+	 int guessTotal;
+	 scanf("%d", &guessTotal);
+	 if (guessTotal == 0)
+	 {
+	 	printf("You have good knowledge in Maths too!. Great. Now the last one\n");
+	 }
+	 else
+	 {
+	 	printf("You failed in simple maths problem");
+		return;
+	 }
+
+
+	  printf("------------------------------\n");
+
+	  char *items[] = {"Apple","Banana","Cherry","Chocolate","Grapes"};
+	  printf("Here are some items. Find the odd one to get yourself out of this room\n");
+	  int num_items = sizeof(items) / sizeof(items[0]);
+
+	  for (int i = 0; i< num_items;i++)
+	  {
+	  	printf("%d) %s\n", i, items[i]);
+	  }
+
+	  int input;
+	  scanf("%d", &input);
+
+	  if (input == 3)
+	  {
+	  	printf("You passed every test i presented. You are now released from this trap");
+	  }
+	  else
+	  {
+		  printf("You failed this test now you will have to choose in between other rooms");
+		  return;
+	  }
+
+
+
+}
+
 
