@@ -2,6 +2,7 @@
 //GP
 //
 //
+//Esteban Nino
 
 
 
@@ -14,6 +15,8 @@
 #include <unistd.h>
 
 //place function prototypes here
+
+void room20(void);
 
 void Detectivegame();
 int randomOutcome();
@@ -503,6 +506,7 @@ int main(int argc, char *argv[])
 //Esteban Nino
 			{
 				puts("room20");
+				room20();
 				break;
 			}
 			case 21:
@@ -1473,7 +1477,409 @@ void room30(void){
 
 
 //===============================================================================================
+void room20(void)
+{
+	int subChoice = 0; // Variable for choices within the room
+	int playAgain = 1; // Variable to determine if the player wants to replay the room
+	const char* endings[] =
+	{
+		"ENDING 1: Eternal peace, but your legacy is lost.",
+		"ENDING 2: Survival with future risks.",
+		"ENDING 3: Victory with a heavy price.",
+		"ENDING 4: Balance is disrupted, but the world is saved.",
+		"ENDING 5: Eternal protection at the cost of humanity.",
+		"ENDING 6: Fragile peace, but turmoil brews.",
+		"ENDING 7: The world is safe but vulnerable.",
+		"ENDING 8: Chaos reigns despite victory.",
+		"ENDING 9: Victory, but you lose control of the future.",
+		"ENDING 10: Corruption through power.",
+		"ENDING 11: A powerful victory with uncertain stability.",
+		"ENDING 12: Chaos through mistrust, and a hero’s tragic demise.",
+		"ENDING 13: Victory at the cost of the Flame.",
+		"ENDING 14: Victory at the cost of your soul.",
+		"ENDING 15: Bound by dark ambitions.",
+		"ENDING 16: Fragile victory with lingering threats."
+	};
 
+	puts("Your eyes flash white from opening the door.");
+	puts("Your vision clears and the setting around you has changed. Surrounded by green plains and a village in the distance.");
+	puts("A rustling is heard from a bush nearby, and a mysterious figure steps forward, the air thick with anticipation.");
+	puts("'An ancient evil awakens,' they warn. 'You must seek the Eternal Flame to thwart its rise.'");
+
+	puts("What do you do?");
+	puts("1. Accept the quest to find the Eternal Flame.");
+	puts("2. Refuse the quest, dismissing the warning from this stranger.");
+
+	scanf("%d", &subChoice);
+
+	switch (subChoice)
+	{
+	case 1: // Path A: The Path of Courage
+		puts("You accept the quest. The mysterious figure nods and hums approvingly.");
+		puts("They hand you a map marked with a glowing symbol. 'Follow this path to your destiny.'");
+		puts("You wonder breifly if this was the correct choice. But now is the time for action.");
+		puts("You look towards the buildings in the near distance, and then back down at your newly acquired map.");
+
+		puts("What is your choice?");
+		puts("1. Explore to potentially seek guidance from the village for advice.");
+		puts("2. Set off immediately, trusting your instincts and follow the map.");
+
+		scanf("%d", &subChoice);
+
+		if (subChoice == 1)
+		{ // Path A1: Guided by Wisdom
+			puts("You follow a paved trail that leads you to the village. The trek was quick and uninterupted.");
+			puts("This town was off course of the flowing symbol in your map. But gaining knowledge is oaramount to success! You hope.");
+			puts("An elder approaches you once you step into the area. Almost expecting you...");
+			puts("He wore a cloak, a rich blue but tattered, a white beard long enough to reach his chest.");
+			puts("'I have been expecting you, traveler.' He spoke with a kind and familiar tone. 'You wish to find the Eternal Flame, yes?'");
+			puts("He gives a good hearty chuckle after you nod. 'I haven't heard of that legend is so long...'");
+			puts("You explain to the elder what your quest is and showing off the map with its glowing symbol.");
+			puts("'I see... Well! If you want to take your sweet time, follow your original path here. But I know a shortcut, haha!'");
+			puts("As he laughed, he pointed his finger to your map, highlighting a new purple path to the glowing symbol.");
+			puts("There you have it, traveler. Just know, the shorter path will bring you more challenges, but time is of the essence!");
+
+			puts("What is your choice?");
+			puts("1. Follow the original path on the map to the mountain where a relic of the Eternal Flame is hidden.");
+			puts("2. Follow a shortcut the elder mentions, though it seems more perilous.");
+			scanf("%d", &subChoice);
+			if (subChoice == 1)
+			{ // Path A1-1
+				puts("You decide to follow the original path, trusting the map’s glowing guidance.");
+				puts("The trail is steep, winding through dense forests and rugged terrain.");
+				puts("The air grows cooler as the trees thin, revealing a towering mountain shrouded in mist.");
+				puts("It took a long while, but you finally see what the map pointed you to.");
+				puts("At the summit lies an ancient temple, its stone walls etched with glowing runes.");
+				puts("As you approach, the massive doors creak open, revealing a chamber bathed in golden light.");
+				puts("A guardian of stone and fire steps forward, its fiery eyes fixed on you.");
+				puts("'To claim the relic of the Eternal Flame, you must prove your worth,' it declares.");
+				puts("Its appearance is draconic, but no larger than a bear. The guardian's scales were made of stone, cracked with age.");
+				puts("Out of those cracks seeped flames, an enchanting yet intimidating orange glow.");
+				puts("'You must prove yourself to be a warrior with a fiery spirit, if you want this relic. Give it your best shot!'");
+				puts("The draconic guardian roared out. Now, to test your wit or strength, traveler.");
+
+				puts("What will you do?");
+				puts("1. Solve the guardian’s riddle to proceed.");
+				puts("2. Fight the guardian, risking injury but potentially earning its respect.");
+				scanf("%d", &subChoice);
+
+				if (subChoice == 1)
+				{ // Path A1-1-1
+					puts("The guardian speaks in a deep rumble: 'Answer this: I am not alive, yet I grow. I don’t have lungs, but I need air. What am I?'");
+					puts("You take a moment to think, recalling the lessons of your past adventures.");
+					puts("With confidence, you reply: 'Fire.'");
+					puts("The guardian nods, its fiery eyes dimming. 'You are wise and worthy,' it declares as the chamber doors swing open.");
+					puts("Inside lies the relic, pulsating with an inner light. As you grasp it, power surges through you.");
+					puts("You channel the Flame’s energy to seal the ancient evil forever, ensuring peace.");
+					puts("But in doing so, your existence is erased from history, a sacrifice that secures the world’s future.");
+					puts(endings[0]);
+				}
+				else if (subChoice == 2)
+				{ // Path A1-1-2
+					puts("You square off against the guardian, its fiery glow intensifying as it lunges forward.");
+					puts("The battle is fierce, the guardian’s stony claws clashing against your weapon with resounding force.");
+					puts("Despite the odds, your determination and skill prevail, and the guardian yields.");
+					puts("'You are indeed a warrior of fire,' it rumbles, stepping aside.");
+					puts("Beyond the guardian lies the relic, bathed in sacred light. You claim it, feeling its immense power.");
+					puts("With the relic’s energy, you unleash the Flame upon the ancient evil, defeating it.");
+					puts("The world is saved, but the Flame’s power lies dormant, a shadow of its former self.");
+					puts(endings[1]);
+				}
+			}
+			else if (subChoice == 2)
+			{ // Path A1-2
+				puts("You decide to take the shortcut, heeding the elder’s advice to save time.");
+				puts("The path leads you through a dark forest, where the trees twist unnaturally and block out the light.");
+				puts("Shadows seem to move in the corners of your vision, and the air grows heavy with tension.");
+				puts("Eventually, the forest gives way to a hidden cavern, its entrance marked by glowing purple runes.");
+				puts("Inside, the air is damp and filled with the sound of dripping water echoing endlessly.");
+				puts("The path splits into two challenges, each leading deeper into the cavern.");
+				puts("You wonder briefly if that elder was helping or derailing you. Either way, time is of the essence!");
+
+				puts("What will you do?");
+				puts("1. Navigate a maze of traps using wit and luck.");
+				puts("2. Confront a lurking beast guarding the exit.");
+				scanf("%d", &subChoice);
+
+				if (subChoice == 1)
+				{ // Path A1-2-1
+					puts("The maze is a treacherous gauntlet of spinning blades, shifting walls, and hidden pitfalls.");
+					puts("The air is thick with an unnatural darkness, and you feel an unseen presence watching your every move.");
+					puts("As you progress, the traps grow more intricate, as if the maze itself is alive, adapting to your movements.");
+					puts("Finally, you reach the heart of the maze. In its center, a great shadow looms, coalescing into the form of a beast.");
+					puts("It growls, its voice reverberating through the cavern: 'You dare to challenge me in my domain?'");
+					puts("With quick thinking, you activate the traps, turning the maze’s deadly mechanisms against the beast.");
+					puts("The ground shakes as the creature howls, its form disintegrating into wisps of darkness.");
+					puts("With the Flame’s relic, you imprison the ancient evil forever within the maze. Yet, the land above is cursed, haunted by whispers of the battle fought below.");
+					puts(endings[2]);
+				}
+				else if (subChoice == 2)
+				{ // Path A1-2-2
+					puts("As you venture deeper into the cavern, an oppressive aura fills the air.");
+					puts("The shadows ahead seem to move with purpose, coalescing into a massive beast with glowing red eyes.");
+					puts("It growls, its voice a deep rumble: 'I am the darkness you seek to destroy. Step forward, if you dare.'");
+					puts("The beast lunges, and the cavern shakes with the force of its movements. Its claws slash at the air, and its roar echoes off the stone walls.");
+					puts("The battle is grueling, every strike pushing you closer to the edge of exhaustion. But you press on, fueled by determination.");
+					puts("Finally, with a decisive blow, you harness the strength of the Flame’s relic, channeling its energy into the beast.");
+					puts("The creature collapses, its form dissipating into shadow. The world is saved, but balance is disrupted, as the beast’s defeat unleashes chaos into the natural order.");
+					puts(endings[3]);
+				}
+			}
+
+		}
+		else if (subChoice == 2)
+		{ // Path A2: Relying on Instinct
+			puts("You step off the beaten path, letting your instincts guide you.");
+			puts("The forest thickens, the trees towering above, their branches twisting like skeletal fingers.");
+			puts("The air feels heavy, charged with an unseen force, and you hear distant whispers carried on the wind.");
+			puts("Finally, you come to a fork in the trail, each path promising a different fate.");
+
+			puts("What will you do?");
+			puts("1. Follow a well-trodden trail marked with strange symbols.");
+			puts("2. Explore an unmarked route, sensing an invisible pull.");
+			scanf("%d", &subChoice);
+			if (subChoice == 1)
+			{ // Path A2-1
+				puts("The trail leads to a mystical grove, its air filled with the faint glow of bioluminescent plants.");
+				puts("A ring of ancient trees surrounds a shimmering pool, their bark etched with symbols of fire and light.");
+				puts("The spirits of the forest emerge, their translucent forms floating gracefully above the ground.");
+				puts("They regard you with curiosity, their voices like a harmonious song.");
+
+				puts("What will you do?");
+				puts("1. Speak with the forest spirits, earning their guidance.");
+				puts("2. Steal an artifact from the grove, risking their wrath.");
+				scanf("%d", &subChoice);
+				if (subChoice == 1)
+				{ // Path A2-1-1
+					puts("You bow respectfully, addressing the spirits with humility.");
+					puts("'Great spirits of the forest,' you say, 'I seek your guidance to vanquish the ancient evil.'");
+					puts("The spirits exchange glances before nodding. 'If you are willing, we shall bond with the Flame to shield the world eternally.'");
+					puts("You merge with the Flame and spirits, creating an eternal barrier against the evil.");
+					puts("The price is steep, as your humanity fades away, leaving you a guardian bound to the grove for eternity.");
+					puts(endings[4]);
+				}
+				else if (subChoice == 2)
+				{ // Path A2-1-2
+					puts("Tempted by the artifact's glow, you approach the sacred pool and grasp the relic.");
+					puts("The spirits’ song turns to a mournful wail, their forms darkening as wrath overtakes them.");
+					puts("You flee with the artifact, using its power to weaken the ancient evil.");
+					puts("Though victorious, chaos spreads in the wake of the spirits' anger, as the balance of the forest is shattered.");
+					puts(endings[5]);
+				}
+			}
+			else if (subChoice == 2)
+			{ // Path A2-2
+				puts("The unmarked route leads you deeper into the forest, where sunlight barely penetrates.");
+				puts("You come upon an ancient shrine, its surface worn by time, yet its power still palpable.");
+				puts("The relic within the shrine radiates energy, and a choice lies before you.");
+
+				puts("What will you do?");
+				puts("1. Restore the shrine to unlock its secrets.");
+				puts("2. Destroy the shrine, unleashing its hidden power.");
+				scanf("%d", &subChoice);
+
+				if (subChoice == 1)
+				{ // Path A2-2-1
+					puts("With careful reverence, you restore the shrine, aligning its stones and reigniting its inscriptions.");
+					puts("A surge of energy flows into the Flame, amplifying its strength.");
+					puts("You use this power to defeat the ancient evil, but the shrine's energy is drained, leaving the Flame powerless for future threats.");
+					puts(endings[6]);
+				}
+				else if (subChoice == 2)
+				{ // Path A2-2-2
+					puts("You strike the shrine, shattering its structure and releasing its immense power.");
+					puts("The energy floods into you, amplifying the Flame, which you use to annihilate the ancient evil.");
+					puts("But the unleashed magic destabilizes the world, throwing it into chaos.");
+					puts(endings[7]);
+				}
+			}
+		}
+		break;
+	case 2: // Path B: The Path of Resistance
+		puts("You scoff at the mysterious figure, dismissing their warnings as the ramblings of a stranger.");
+		puts("The figure shakes their head solemnly. 'You cannot escape what is meant to be,' they whisper, before vanishing into the shadows.");
+		puts("That night, your sleep is plagued by nightmares—visions of a burning village, shadowy forms stalking the land, and the anguished cries of those you care about.");
+		puts("You awaken to find the village consumed by chaos, strange events unfolding before your very eyes.");
+
+		puts("What will you do?");
+		puts("1. Investigate the mysterious events happening in this village.");
+		puts("2. Flee the village, escaping the spreading danger.");
+		scanf("%d", &subChoice);
+
+		if (subChoice == 1)
+		{ // Path B1: Investigating the Village
+			puts("Determined to uncover the truth, you stay behind, navigating through the chaos of this once-peaceful village.");
+			puts("The streets are filled with eerie silence, save for the occasional whispered voice that seems to echo from nowhere.");
+			puts("You discover two suspicious figures who may hold the answers to what is happening.");
+
+			puts("What will you do?");
+			puts("1. Confront the suspicious traveler who arrived the same day as the warnings.");
+			puts("2. Question a local villager who seems to know more than they’re sharing.");
+			scanf("%d", &subChoice);
+
+			if (subChoice == 1)
+			{ // Path B1-1: Traveler
+				puts("You follow the faint sounds of hurried footsteps to an alley where the traveler frantically stuffs supplies into a weathered bag.");
+				puts("They freeze as you approach, their eyes darting like a cornered animal. 'I—I was just leaving,' they stammer.");
+				puts("When pressed, they reveal they know of the Eternal Flame and the ancient evil plaguing the land.");
+				puts("'I can lead you to the Flame,' they say, a glimmer of desperation in their voice. 'But you must trust me. Together, we can end this.'");
+
+				puts("What will you do?");
+				puts("1. Trust the traveler to wield the Flame, leading to victory but ceding control over its future.");
+				puts("2. Betray the traveler, taking the Flame and defeating the evil but becoming corrupted by its power.");
+				scanf("%d", &subChoice);
+
+				if (subChoice == 1)
+				{ // Path B1-1-1
+					puts("You decide to trust the traveler, following their guidance through the village’s hidden paths.");
+					puts("Their knowledge proves invaluable as you navigate through shadowy alleys and evade the spreading chaos.");
+					puts("Together, you locate the Flame’s resting place and unleash its power, vanquishing the ancient evil.");
+					puts("But the traveler’s intentions soon become clear—they wield the Flame not for the world’s good, but for their own ambitions.");
+					puts("You watch as they rise to power, their control of the Flame reshaping the future in ways you never intended.");
+					puts(endings[8]);
+				}
+				else if (subChoice == 2)
+				{ // Path B1-1-2
+					puts("Your distrust festers as the traveler leads you to the Flame. Once it is within reach, you turn on them.");
+					puts("In a brutal moment of betrayal, you seize the Flame for yourself, leaving the traveler mortally wounded.");
+					puts("With its immense power, you vanquish the ancient evil, but the Flame’s energy corrupts your soul.");
+					puts("Your triumph becomes a hollow one as the darkness you sought to destroy takes root within you.");
+					puts(endings[9]);
+				}
+			}
+			else if (subChoice == 2)
+			{ // Path B1-2: Villager
+				puts("You find the villager hunched over in a dimly lit room, their hands trembling as they clutch an ancient tome.");
+				puts("When you confront them, they recoil, their voice barely a whisper: 'You shouldn’t have come here...'");
+				puts("After much hesitation, they reveal a hidden passage beneath the village, claiming it leads to the source of the chaos.");
+				puts("But their eyes betray a secret, something they’re not telling you.");
+
+				puts("What will you do?");
+				puts("1. Enter the passage, braving its dangers.");
+				puts("2. Press the villager for more information, risking conflict.");
+				scanf("%d", &subChoice);
+
+				if (subChoice == 1)
+				{ // Path B1-2-1
+					puts("You descend into the hidden passage, the air growing colder with each step.");
+					puts("The walls are lined with cryptic carvings, and faint whispers seem to emanate from the darkness.");
+					puts("At the end of the passage, you discover a forgotten weapon, glowing faintly with the power of the Flame.");
+					puts("With this weapon, you confront and destroy the ancient evil, its form dissolving into shadows.");
+					puts("However, the weapon’s unstable energy causes rifts to appear in the land, threatening the fragile peace.");
+					puts(endings[10]);
+				}
+				else if (subChoice == 2)
+				{ // Path B1-2-2
+					puts("You press the villager for the truth, your frustration boiling over as they evade your questions.");
+					puts("Finally, in a moment of desperation, they lash out, revealing their allegiance to the ancient evil.");
+					puts("The battle is fierce, the villager using forbidden magic to summon shadowy creatures.");
+					puts("You manage to defeat them, but not without grave consequences—their dark power engulfs the room.");
+					puts("As the walls collapse, you realize too late that the evil’s influence has spread beyond the village.");
+					puts("You perish in the destruction, your sacrifice buying the world precious time to prepare for the evil’s return.");
+					puts(endings[11]);
+				}
+			}
+		}
+
+			else if (subChoice == 2)
+			{ // Path B2: Escaping the Village
+				puts("Overwhelmed by fear as chaos engulfs this once-peaceful village, you decide to flee.");
+				puts("The streets crackle with unnatural energy, shadowy figures emerging from the corners of your vision.");
+				puts("You run until you reach the outskirts of the village, where two paths lie ahead—a decision must be made.");
+
+				puts("Where will you go?");
+				puts("1. Seek refuge in the nearby woods, risking the unknown.");
+				puts("2. Head toward an abandoned castle, hoping its walls will provide safety.");
+				scanf("%d", &subChoice);
+
+				if (subChoice == 1)
+				{ // Path B2-1: The Woods
+					puts("You plunge into the woods, the air thick with mist and the faint rustle of unseen creatures.");
+					puts("The ancient trees loom over you, their gnarled branches intertwining to block out the moonlight.");
+					puts("In the heart of the woods, you stumble upon a cursed glade, its center dominated by a glowing figure trapped within a shimmering barrier of light.");
+					puts("The trapped spirit’s eyes lock onto yours, a mix of desperation and hope evident in their ethereal gaze.");
+
+					puts("What will you do?");
+					puts("1. Free the trapped spirit, seeking their guidance to vanquish the evil.");
+					puts("2. Absorb the spirit’s power, using it to enhance your own strength.");
+					scanf("%d", &subChoice);
+
+					if (subChoice == 1)
+					{ // Path B2-1-1
+						puts("You kneel before the spirit, whispering a prayer of release as you break the shimmering barrier.");
+						puts("The spirit emerges, their form now radiant and whole. They thank you with a solemn nod.");
+						puts("'With my freedom comes the power to banish the darkness,' they declare.");
+						puts("Channeling the Flame’s energy through the spirit, you watch as the ancient evil is consumed in a burst of light.");
+						puts("The world is saved, but at a great cost—the Flame’s power is extinguished forever, leaving the world vulnerable to future threats.");
+						puts(endings[12]);
+					}
+					else if (subChoice == 2)
+					{ // Path B2-1-2
+						puts("You approach the trapped spirit, your intentions clear. As you place your hand on the barrier, the spirit’s eyes widen in fear.");
+						puts("'What are you doing?' they cry, but it’s too late—their power flows into you, a searing energy that ignites your very soul.");
+						puts("With the spirit’s strength now yours, you confront the ancient evil, destroying it in a blaze of glory.");
+						puts("But the victory is hollow. The spirit’s essence lingers, twisting your soul into something unrecognizable.");
+						puts("The world is safe, but you are lost, consumed by the darkness you sought to defeat.");
+						puts(endings[13]);
+					}
+				}
+				else if (subChoice == 2)
+				{ // Path B2-2: The Abandoned Castle
+					puts("You make your way to the abandoned castle, its silhouette stark against the night sky.");
+					puts("The crumbling walls and empty towers whisper of forgotten battles and lost glory.");
+					puts("As you step through the broken gates, an enigmatic figure greets you, cloaked in shadows.");
+					puts("'Welcome, traveler,' they say, their voice a smooth mixture of charm and menace. 'I know why you’re here.'");
+					puts("They claim to hold knowledge of the Flame and its power, offering to assist you in exchange for an alliance.");
+
+					puts("What will you do?");
+					puts("1. Ally with the figure, trusting their offer of support.");
+					puts("2. Betray the figure, taking their resources for yourself.");
+					scanf("%d", &subChoice);
+
+					if (subChoice == 1)
+					{ // Path B2-2-1
+						puts("You accept the figure’s offer, wary but desperate. Together, you delve into the depths of the castle.");
+						puts("They reveal hidden chambers, filled with ancient texts and forgotten artifacts, culminating in the discovery of the Flame.");
+						puts("With their guidance, you wield the Flame to defeat the ancient evil, its dark form obliterated by your combined efforts.");
+						puts("But their ambition is clear. The Flame is now theirs to command, and they bind you to their dark schemes.");
+						puts("Though the world is saved, you find yourself a pawn in a new, sinister future.");
+						puts(endings[14]);
+					}
+					else if (subChoice == 2)
+					{ // Path B2-2-2
+						puts("You feign trust, following the figure into the castle’s depths. At the moment of discovery, you strike.");
+						puts("Your betrayal is swift and ruthless, leaving the figure powerless as you seize the Flame.");
+						puts("With its immense power, you vanquish the ancient evil, the shadows scattering into nothingness.");
+						puts("But the betrayal comes at a cost. The castle’s secrets unravel, revealing hidden threats that will soon emerge.");
+						puts("The peace you fought for is fragile, and the world’s future is uncertain.");
+						puts(endings[15]);
+					}
+				}
+			}
+			break;
+
+	default:
+		puts("The mysterious figure waits for your answer, their eyes piercing your soul...");
+		}
+		puts("The room fades back to the central chamber, leaving you pondering your choice.");
+
+		// Replay Option
+		puts("Do you want to play again?");
+		puts("1. Yes");
+		puts("2. No");
+		scanf("%d", &playAgain);
+
+		if (playAgain != 1)
+		{
+			// Add optional random flavor text when leaving
+			int randomChance = rand() % 3; // 1 in 3 chance
+			if (randomChance == 0)
+			{
+				puts("A sinister laugh echoes in your mind: 'You cannot escape your destiny...'");
+			}
+			puts("You decide to leave room 20, your choices etched in fate.");
+		}
+	}
 
 //===============================================================================================
 
