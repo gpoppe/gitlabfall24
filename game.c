@@ -48,7 +48,7 @@ int RM12DiceRoll();
 
 int rps_game(char handGuess, char cpuGuess);
 
-void room3(void);
+void r3pickSU(void);
 void mysteryItemGame(void);
 
 
@@ -271,7 +271,7 @@ int main(int argc, char *argv[])
 			{
 				puts("room3");
 				//Nestor Hernandez
-				room3();
+				r3pickSU();
 				break;
 			}
 			case 4:
@@ -3054,7 +3054,7 @@ int rps_game(char handGuess, char cpuGuess)
 
 //===============================================================================================
 //Nestor's Function
-void room3(void)
+void r3pickSU(void)
 {
     int roomChoice3 = 0;
     int roomResults3[5] = {0};
@@ -3063,7 +3063,7 @@ void room3(void)
     printf("2. Nightmare slope\n");
     printf("3. Tavern\n");
     printf("4. Three little pigs\n");
-    printf("5. ???\n");
+    printf("5. SU\n");
     printf("Choose an option (1-5): ");
     scanf("%d", &roomChoice3);
 
@@ -3171,15 +3171,97 @@ void room3(void)
         }
         case 5:
         {
-            //???
-            for (int i = 0; i < 5; i++) {
-                printf("Why did you even pick this one?\n");
+            //simulated universe ocurrence reference
+            char choice1[15];
+            char choice2[15];
+            char choice3[15]; 
+            srand(time(NULL));
+            int chance;
+            char stuffs[8][30] = {"toothpaste", "sugar", "fizzy", "light", "The Pinkest Collision", "Thalan Toxi-Flame", "gently", "vigorously"};
+
+            for (int i = 0; i < 5; i++) 
+            {
+                printf("'Welcome!'\n");
             }
-            printf(".....\n");
-            printf("Whoops\n");
-            printf("You have successfully completed room 3!\n");
-            break;
-        }
+            puts(".....\n");
+            puts("'Whoops, let me fix that...'\n");
+            puts("'Okay there, welcome to the bar!'\n"); 
+            puts("'We specialize in exotic cocktails. Although we can't guarantee it won't end up a toxic concoction.'\n");
+            puts("You start to doubt the waiter's professionalism.\n"); // if u know the reference then *thumbs up*
+            puts("'Select what you fancy.'");
+            puts("Fizzy  |  Light");
+            scanf("%s", choice1); 
+
+            if (strcmp(choice1, "fizzy") == 0 || strcmp(choice1, "light") == 0) 
+            {
+                puts("\nToothpaste  |  Sugar");
+                scanf("%s", choice2); 
+
+                if (strcmp(choice2, "toothpaste") == 0 || strcmp(choice2, "sugar") == 0) 
+                {
+                    puts("\nIt's time to stir it.");
+                    puts("Gently  |  Vigorously");
+                    scanf("%s", choice3);
+
+                    chance = rand() % 100; 
+
+                    if (strcmp(choice2, "toothpaste") == 0 && strcmp(choice3, "vigorously") == 0) 
+                    {
+                        if (chance < 90) 
+                        {
+                            printf("Result: %s\n", stuffs[5]); //thalan toxi-flame
+                            puts("\nYou have successfully completed room 3!\n");
+                        } 
+                        else 
+                        {
+                            printf("Result: %s\n", stuffs[4]); //the pinkest collision
+                            puts("\nYou have successfully completed room 3!\n");
+                        }
+                    } 
+                    else if (strcmp(choice2, "sugar") == 0 && strcmp(choice3, "gently") == 0) 
+                    {
+                        if (chance < 95) 
+                        {
+                            printf("Result: %s\n", stuffs[4]); 
+                            puts("\nYou have successfully completed room 3!\n");
+                        } 
+                        else 
+                        {
+                            printf("Result: %s\n", stuffs[5]); 
+                            puts("\nYou have successfully completed room 3!\n");
+                        }
+                    }
+                    else if ((strcmp(choice2, "toothpaste") == 0 && strcmp(choice3, "gently") == 0) ||
+                       (strcmp(choice2, "sugar") == 0 && strcmp(choice3, "vigorously") == 0))
+                       {
+                            if (chance < 50) 
+                                {
+                                    printf("Result: %s\n", stuffs[5]);
+                                    puts("\nYou have successfully completed room 3!\n");
+                                } 
+                                else 
+                                {
+                                    printf("Result: %s\n", stuffs[4]); 
+                                    puts("\nYou have successfully completed room 3!\n");
+                                }
+                        } 
+                        else 
+                        {
+                            printf("Unexpected stirring method. No result produced.\n");
+                        }
+                } 
+                else 
+                {
+                    printf("Invalid ingredient choice.\n");
+                }
+            }
+            else 
+            {
+                printf("Invalid base choice.\n");
+            }
+                break;
+        } 
+        
         default:
             printf("Invalid choice. Please choose between 1 and 5.\n");
     }
