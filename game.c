@@ -2061,59 +2061,88 @@ void room30(void){
 
 
 
-void Room26FindTheKey()
-{
-        int tries = 5;
-        int randomKeys = rand() % 10 + 1;
-        int guess;
-        int keys[10];
-        bool foundKey = false;
+void Room26FindTheKey() {
+    int choice;
+    int subChoice;
+    char *item;
+    char inventory[3][20] = {"Shiny Key", "Rusty Coin", "Broken Compass"};
+    int randomItem = rand() % 3;
 
-        // make random locations
-        for (int i = 0; i < 10; i++)
-        {
-                keys[i] = 0;
-        }
-        keys[randomKeys - 1] = 1;
+    printf("\nYou find yourself in a dimly lit room with ancient engravings on the walls. The air feels heavy as you notice three distinct areas to explore.\n");
+    
+    puts("What will you do?");
+    puts("1. Inspect the mysterious chest.");
+    puts("2. Examine the glowing pedestal.");
+    puts("3. Search behind the dusty curtains.");
+    puts("Enter your choice (1-3):");
+    scanf("%d", &choice);
 
-        printf("You entered room 27. To enter the next door find the hidden key in one of the boxes.\n");
+    switch (choice) {
+        case 1:
+            puts("\n[You cautiously approach the chest, its surface covered in strange symbols.]");
+            puts("The chest appears locked with three dials, each displaying a number. You must guess the correct combination.");
+            
+            int dial1, dial2, dial3;
+            int correctDial1 = rand() % 10 + 1;
+            int correctDial2 = rand() % 10 + 1;
+            int correctDial3 = rand() % 10 + 1;
 
-        printf("You have 5 tries to find the key. Choose a number between 1 and 10.\n");
-        // while the user is guessing
-        while (guess > 0 && !foundKey)
-        {
-                printf("\nEnter your choice of box: ");
-                scanf("%d", &guess);
+            printf("Enter the first number (1-10): ");
+            scanf("%d", &dial1);
+            printf("Enter the second number (1-10): ");
+            scanf("%d", &dial2);
+            printf("Enter the third number (1-10): ");
+            scanf("%d", &dial3);
 
-                if (guess < 1 || guess > 10)
-                {
-                        printf("You must choose a number between 1 and 10. Try again.\n");
-                        continue;
-                }
+            if (dial1 == correctDial1 && dial2 == correctDial2 && dial3 == correctDial3) {
+                printf("\nThe chest clicks open! Inside, you find a %s. You take it with you.\n", inventory[randomItem]);
+            } else {
+                puts("\nThe chest remains locked. Perhaps there’s another way to find the key...");
+            }
+            break;
 
-                if (keys[guess - 1] == 1)
-                {
-                        printf("You got the right box at %d! Congrats!\n", guess);
-                        foundKey = true;
-                }
+        case 2:
+            puts("\n[You approach the glowing pedestal. A strange energy emanates from it, and a holographic figure appears.]");
+            puts("The figure speaks: 'To claim the key, you must solve my riddle.'");
+            
+            puts("\nRiddle: I am always hungry, I must always be fed. The finger I touch, will soon turn red. What am I?");
+            puts("1. Fire");
+            puts("2. Water");
+            puts("3. Wind");
+            printf("Enter your answer (1-3): ");
+            scanf("%d", &subChoice);
 
-                else
-                {
-                        printf("There was no key in the box %d. Try Agin\n", guess);
-                }
+            if (subChoice == 1) {
+                puts("\n'Correct!' The hologram vanishes, and the key appears on the pedestal. You take it.");
+            } else {
+                puts("\n'Wrong answer!' The hologram disappears, and the pedestal stops glowing. The key is lost.");
+            }
+            break;
 
-                tries--;
+        case 3:
+            puts("\n[You pull back the dusty curtains, revealing a small alcove with a strange mechanism and a glowing crystal.]");
+            puts("The mechanism has three levers. You must pull them in the correct order.");
+            
+            int leverOrder[3] = {rand() % 3 + 1, rand() % 3 + 1, rand() % 3 + 1};
+            int guessOrder[3];
 
-                if (!foundKey && tries > 0)
-                {
-                        printf("You have %d tries remaining.\n", tries);
-                }
-        }
+            printf("Enter the first lever to pull (1-3): ");
+            scanf("%d", &guessOrder[0]);
+            printf("Enter the second lever to pull (1-3): ");
+            scanf("%d", &guessOrder[1]);
+            printf("Enter the third lever to pull (1-3): ");
+            scanf("%d", &guessOrder[2]);
 
-        if (!foundKey)
-        {
-                printf("You ran out of tries. The key was in box %d.\n", randomKeys);
-        }
+            if (guessOrder[0] == leverOrder[0] && guessOrder[1] == leverOrder[1] && guessOrder[2] == leverOrder[2]) {
+                puts("\nThe mechanism hums to life, and the alcove reveals a shining golden key. You take it.");
+            } else {
+                puts("\nThe mechanism sparks and stops working. The key remains hidden.");
+            }
+            break;
+
+        default:
+            puts("\nYou wander aimlessly, unable to make a decision. You leave the room in frustration.");
+    }
 }
 
 //Room 18 Function
