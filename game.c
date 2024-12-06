@@ -24,7 +24,7 @@ void displayClues(char *clues[], int cluesFound);
 
 
 void room11Challenge(void);
-
+void room24(void);
 void roomTwoRS(int reply);
 
 
@@ -933,7 +933,7 @@ int main(int argc, char *argv[])
 			}
 			case 24:
 			{
-				puts("room24");
+				room24();
 				break;
 			}
 			case 25:
@@ -2951,5 +2951,65 @@ void case16()
 }
 
 
+//======
+void room24(void) {
+    int choice, treasureCount = 0;
+    int treasures[5] = {0}; // Array to track found treasures
+    char playAgain;
 
+    printf("Welcome to Room 24! You see a mysterious cavern with five paths to explore.\n");
+
+    do {
+        printf("\nChoose a path to explore:\n");
+        printf("1. The glittering tunnel.\n");
+        printf("2. The dark abyss.\n");
+        printf("3. The roaring waterfall.\n");
+        printf("4. The enchanted forest.\n");
+        printf("5. The ancient ruins.\n");
+        printf("Enter your choice (1-5): ");
+        scanf("%d", &choice);
+
+        if (choice >= 1 && choice <= 5) {
+            if (treasures[choice - 1]) {
+                printf("You've already explored this path and claimed the treasure!\n");
+            } 
+		else {
+                srand(time(NULL));
+                int outcome = rand() % 3; // Random encounter (0 = danger, 1 = treasure, 2 = nothing)
+
+                switch (outcome) {
+                    case 0:
+                        printf("Oh no! You encounter a trap and barely escape unscathed.\n");
+                        break;
+                    case 1:
+                        printf("Congratulations! You found a hidden treasure.\n");
+                        treasures[choice - 1] = 1;
+                        treasureCount++;
+                        break;
+                    case 2:
+                        printf("You find nothing but dust and cobwebs.\n");
+                        break;
+                }
+            }
+        } 
+	else {
+            printf("Invalid choice. Try again.\n");
+        }
+
+        printf("\nTreasures collected: %d/5\n", treasureCount);
+
+        if (treasureCount < 5) {
+            printf("Would you like to explore another path? (y/n): ");
+            scanf(" %c", &playAgain);
+        } 
+	else {
+            printf("You've collected all the treasures in Room 24! Great job!\n");
+            playAgain = 'n';
+        }
+    } 
+	while (playAgain == 'y');
+
+    printf("Exiting Room 24. Returning to the main hall.\n");
+}
+//========
 
