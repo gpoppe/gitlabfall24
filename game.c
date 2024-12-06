@@ -40,6 +40,9 @@ void room3(void);
 void mysteryItemGame(void);
 
 
+void room19Challenge(void);
+
+
 int room10bad(int num);
 int room10Red(int red);
 int room10Blue(int blue);
@@ -50,6 +53,7 @@ void case16(void);
 void room30(void);
 
 void room8(void);
+
 
 void Room26FindTheKey(void);
 
@@ -871,8 +875,55 @@ int main(int argc, char *argv[])
 				break;
 			}
 			case 19:
-			{
-				puts("room19");
+			{ 
+				{
+    printf("\nWelcome to Room 19: The Quiz Challenge!\n");
+    printf("To escape this room, you must answer at least 3 out of 5 questions correctly.\n");
+
+    // Quiz questions and answers
+    char *questions[] = {
+        "1. What is the capital of France?\n   a) Paris\n   b) London\n   c) Berlin\n   d) Madrid\n",
+        "2. What is the largest planet in our solar system?\n   a) Mars\n   b) Earth\n   c) Jupiter\n   d) Saturn\n",
+        "3. Who wrote 'To Kill a Mockingbird'?\n   a) Harper Lee\n   b) J.K. Rowling\n   c) Ernest Hemingway\n   d) Mark Twain\n",
+        "4. What is 9 * 8?\n   a) 72\n   b) 81\n   c) 64\n   d) 90\n",
+        "5. Which element has the chemical symbol 'O'?\n   a) Oxygen\n   b) Gold\n   c) Hydrogen\n   d) Helium\n"
+    };
+
+    char answers[] = {'a', 'c', 'a', 'a', 'a'}; // Correct answers
+    char userAnswer;
+    int correctAnswers = 0;
+    int totalQuestions = 5;
+
+    // Quiz loop
+    for (int i = 0; i < totalQuestions; i++) {
+        printf("\n%s", questions[i]);
+        printf("Enter your answer (a/b/c/d): ");
+        scanf(" %c", &userAnswer);
+
+        if (tolower(userAnswer) == answers[i]) {
+            printf("Correct!\n");
+            correctAnswers++;
+        } else {
+            printf("Wrong! The correct answer was '%c'.\n", answers[i]);
+        }
+
+        // Provide encouragement
+        if (correctAnswers > (i + 1) / 2) {
+            printf("You're doing great! Keep it up!\n");
+        } else {
+            printf("Don't give up, you can still make it!\n");
+        }
+    }
+
+    // Check results
+    if (correctAnswers >= 3) {
+        printf("\nCongratulations! You answered %d out of %d questions correctly and escaped Room 19!\n", correctAnswers, totalQuestions);
+    } else {
+        printf("\nYou only answered %d out of %d questions correctly. You failed to escape Room 19. Better luck next time!\n", correctAnswers, totalQuestions);
+    }
+    break;
+}
+
 				break;
 			}
 			case 20:
