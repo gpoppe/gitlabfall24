@@ -1,6 +1,6 @@
 //contributors
 //GP
-//
+//Yyong Taing
 //
 
 
@@ -34,6 +34,10 @@ int RM12DiceRoll();
 int rps_game(char handGuess, char cpuGuess);
 
 void room3(void);
+
+
+void room8(void);
+
 void mysteryItemGame(void);
 
 void room30(void);
@@ -44,6 +48,7 @@ void Room26FindTheKey(void);
 void room18(void);
 
 void room13sid(void);
+
 
 
 
@@ -282,7 +287,8 @@ int main(int argc, char *argv[])
 			case 8:
 			{
 			//yyong 
-				puts("room8");
+				puts("*YOU HAVE ENTERED LUCKY ROOM 8!*");
+				room8();
 				break;
 			}
 //
@@ -734,6 +740,103 @@ int main(int argc, char *argv[])
 //place functions here
 
 
+
+//Yyong's Function
+void room8(void)
+{
+        puts("There are five options for you to choose from in this lucky room:");
+        const char *actions[]=
+        {
+                "1.Fight a monster\n",
+                "2.Walk to the desk\n",
+                "3.Talk to the glowing red orb\n",
+                "4.Pick up a gas lamp\n",
+                "5.Scream for help\n"
+        };
+       
+        int choice;
+	const int num= 5;
+	int guess = 0;
+	char answer[]= "a secret";
+       	char riddle[20];	
+
+	srand(time(NULL));
+
+        while(1)
+        {
+		int randNum = 1+ (rand()%5);
+		for(int i = 0;i < num;i++)
+		{
+			printf("%s", actions[i]);
+		}
+		printf("What will you choose?\n");
+		scanf("%d", &choice);
+		while (getchar() != '\n');
+		printf("\n");
+
+		switch(choice)
+		{
+			case 1:
+				puts("A MONSTER HAS APPEARED!");
+				puts("Pick a number between 1 and 5, if you choose right, you win the fight!"); 
+	
+				scanf("%d",&guess);
+
+				if(guess == randNum)
+				{
+					puts("CONGRATS YOU HAVE DEFEATED THE MONSTER!\n");
+				}
+				else
+				{
+					puts("OH NO! The monster beat you & stole your pants!\n");
+				}
+				break;
+			case 2:
+				puts("A glowing scroll has appearred on the desk, but the writing is too small to read.");
+				puts("*Looks in drawer* AH a magnifying glass!");
+				puts("It seems to be a riddle!");
+				puts("\"If you have me, you will want to share me. If you share me, you will no longer have me");
+				puts("What is your answer?");
+				fgets(riddle, sizeof(riddle), stdin); 
+				riddle[strcspn(riddle, "\n")] = '\0';
+
+        if (strcasecmp(answer, riddle) == 0) 
+				{
+				    	puts("YOU'VE SOLVED THE RIDDLE!\n");
+				} 
+				else 
+				{
+		    			puts("UH OH, You've guessed wrong, the scroll has vanished!\n");
+                		}
+               			 break;
+			case 3:
+				puts("Hi, I was hopi-");
+                		puts("Red Orb:\"EWW A HUMAN, GET OUT OF MY SIGHT!!!!!\"");
+                		puts("*A TRAPPED DOOR OPENED BENEATH YOU*");
+                		puts("Red Orb:\"MUAHAHHAAHA, GOOD RIDDANCE!!!\"\n");
+                		break;
+			case 4:
+				puts("You picked up the gas lamp, but nothing happened...");
+				puts("*Puts it back down*\n");
+				break;
+			
+			case 5:
+				puts("HEEEEEEEELLLLLLLLLLLLLLPPPPPP!!");
+				puts("*a lady in a white dress appears and firmly hugs you*");
+				puts("*Without saying a word, she vanishes just as fast as she came*");
+				puts("what the hell was that????");
+				puts("*continues screaming, hopefully she comes back*\n");
+				break;
+
+            		default:
+                		puts("Please choose one of the options.");	
+}
+		if(choice == 3)
+		{		 
+			break;
+		}
+}
+
 //Room 23 Function
 void room23Logic(){
 	//make 4 indiidual choices
@@ -854,6 +957,7 @@ void room23Logic(){
 		printf("Choice count %d\n",choice);
 		puts("You do something...unexpected. Your moves and actions were so crazy that somehow you ended up in the vaccume of space. Despite being cool, you drift into the void of space until you loose consiousness. You wake up back where you started\n\n");
 	}
+
 }
 
 // Anushka's function
@@ -1089,7 +1193,6 @@ int rps_game(char handGuess, char cpuGuess)
   }
 
 }
-
 
 //===============================================================================================
 //Nestor's Function
