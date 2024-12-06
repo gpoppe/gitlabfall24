@@ -117,18 +117,22 @@ int main(int argc, char *argv[])
 				char handGuess;
 				char cpuGuess;
 
+				int random_coin = 1 + rand() % 2; //heads or tails
+				int coinGuess;
+
 				printf("\nThe door slams behind you and you realize you probably should've chosen another room.\n");
 				printf("Fortunately, it looks like the mechanical door will allow you to leave if you can beat it in at least 3 games of its choosing.\n\n");
 				//gather a total of 3 wins
 
-				while(wins < 3)
+				while(wins < 4)
 				{
 
-					printf("Enter a number (1-3) to select a game.\n\n");
+					printf("Enter a number (1-4) to select a game.\n\n");
 
 					printf("1. Word unscramble\n");
 					printf("2. Number guess\n");
-					printf("3. Rock, paper, scissors\n\n");
+					printf("3. Rock, paper, scissors\n");
+					printf("4. Heads or Tails\n\n");
 
 					scanf("%d", &choice1);
 
@@ -213,22 +217,48 @@ int main(int argc, char *argv[])
 
 								break;
 							}
+						 case 4:
+							{
+								printf("\nThe door spits out a coin and you have to call heads or tails before it hits the ground.\n");
+								printf("\nCall it! ('1' for Heads, '2' for tails): ");
+								scanf("%d", &coinGuess);
 
-						default: printf("Invalid Entry!\n");
+								if(random_coin == 1)
+								{
+									printf("Its heads!\n");
+								} else
+								{
+									printf("Its tails!\n");
+								}
 
-				}
 
-					if(wins == 3)
+								if(coinGuess == random_coin)
+								{
+									wins = wins + 1;
+									printf("\nYou win!\n");
+									printf("Total wins: %d\n\n", wins);
+								} else
+								{
+									printf("\nYou lose! Better luck next time.\n\n");
+								}
+								
+								break;
+
+							}
+
+						default: printf("Invalid Entry\n\n");
+
+					}//end of internal switch
+
+					if(wins == 4)
 					{
-						printf("The tumblers in the door release as you obtain your third win.\nYou've escaped!\n\n");
+						printf("\nThe tumblers in the door release as you obtain your fourth win. You've escaped room 1!\n\n");
 					}
 
-
-			}
-	
+				}//end of while loop
 				break;
+			}//end of external switch	
 			
-			}	
 			case 2:
 			{
 				//Raquel Serratos
