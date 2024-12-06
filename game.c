@@ -37,6 +37,14 @@ int rps_game(char handGuess, char cpuGuess);
 void room3(void);
 void mysteryItemGame(void);
 
+
+int room10bad(int num);
+int room10Red(int red);
+int room10Blue(int blue);
+
+
+void case16(void);
+
 void room30(void);
 
 
@@ -417,7 +425,47 @@ int main(int argc, char *argv[])
 			case 10:
 			{
 //Angel
-				puts("room10");
+				int userC= 0;
+				int badCount=0;
+				int theBox[]={1,2,3,4,5};
+				puts("Welcome to room10");
+				puts("In front of you there is a desk with three crystals on the table");
+				puts("A note is found under the crystal it reads: There is no escape only Games");
+				start:
+				puts("You can now only pick one of the two crystals they are red (1) and blue(2) ");
+				scanf("%d", &userC);
+				if(userC ==1)
+				{
+					badCount = room10Red(badCount);
+					 if(badCount==3){
+                                                break;
+                                        }
+                                        else{
+                                                goto start;
+                                        }
+
+				}
+				else if(userC == 2)
+				{
+					badCount = room10Blue(badCount);
+					 if(badCount==3){
+                                                break;
+                                        }
+                                        else{
+                                                goto start;
+                                        }
+				}
+				else 
+				{
+					badCount = room10bad(badCount);
+					if(badCount==3){
+						break;
+					}
+					else{
+						goto start;
+					}
+
+				}	
 				break;
 			}
 			
@@ -434,6 +482,7 @@ int main(int argc, char *argv[])
 				int cleared = 0;
 				int choice = 0;
 				int roll = 0;
+				char arr[2][10] = {"Ka", "Boom"};
 
 				puts("Behind door 12, You are met with a grand open forest.");
 				puts("After such a panic, you decide to take in the scenery for a moment and catch your breath.");
@@ -515,7 +564,7 @@ int main(int argc, char *argv[])
 								printf("\n");
 								puts("A bright flash emminates, and your alive once more. As if seemingly in a loop...");
 							}
-							else if(roll >=11)
+							else if(roll >=11 && roll < 20)
 							{
 								puts("Success!");
 								printf("\n");
@@ -559,16 +608,337 @@ int main(int argc, char *argv[])
 
 							break;
 						case 2:
-							//code
+							puts("A very familiar looking sword that would only be weilded by a man in a green tunic...");
+							roll = RM12DiceRoll();
+							printf("\n You rolled a %d\n", roll);
+
+							if(roll == 1)
+							{
+								puts("Critical Failure");
+								printf("\n");
+								puts("Your lack of sword training and world saving causes you to trip on air and get impaled by your own sword");
+								puts("The last thing you see is the pack of wolves snickering at your death");
+								printf("\n");
+								puts("*********");
+								puts("*FAILURE*");
+								puts("*********");
+								printf("\n");
+								puts("Someone should really hide that sword better");
+								printf("\n");
+								puts("A bright flash emminates, and your alive once more. As if seemingly in a loop...");
+							}
+							else if(roll == 20)
+							{
+								puts("NAT 20!?");
+								printf("\n");
+								puts("Somehow, you get hit with a flashback showcasing a professional swordsman!");
+								puts("Your body, almost as if instinctively, mimics your vision");
+								puts("The wolves are cut down one by one in a series of swift slashes");
+								printf("\n");
+								puts("*********");
+								puts("*SUCCESS*");
+								puts("*********");
+								printf("\n");
+								puts("Standing atop a mountain of corpses, you look at your sword");
+								puts("Wondering how many more beasts you must fell to leave this accursed room");
+								puts("Then you remember your already at the end! And head over to open the door");
+								puts("Only to be met with a familiar scene...");
+								printf("\n");
+								cleared = 1;
+							}
+							else if(roll <= 10)
+							{
+								puts("Failure");
+								printf("\n");
+								puts("Sword in one hand, sword in the other...");
+								puts("Wait why are you holding the sword with two hands?");
+								puts("A generational fumble on your part, holding the sword in such a manner caused you to swing innacurately!");
+								puts("The sword pierces a wolf, but then ricochets back towards your own neck!");
+								printf("\n");
+								puts("*********");
+								puts("*FAILURE*");
+								puts("*********");
+								printf("\n");
+								puts("I'm not sure thats how physics work, but i dont care");
+								printf("\n");
+								puts("A bright flash emminates, and your alive once more. as if seemingly in a loop..."); 
+
+
+							}
+							else if(roll >=11)
+							{
+								puts("Success");
+								printf("\n");
+								puts("Gripping the sword with one hand, you enter what can only be described as an anime stance");
+								puts("You readily charge the beasts and hack and slash your way to the door");
+								puts("You suffer minor cuts but are victorious!");
+								printf("\n");
+								puts("*********");
+								puts("*SUCCESS*");
+								puts("*********");
+								printf("\n");
+								puts("You set the sword aside(for plot reasons) and head into the door");
+								puts("Only to be met with a familiar scene...");
+								printf("\n");
+								cleared = 1;
+							}
+
 							break;
 						case 3:
 							//code
+							puts("You pull out a wind-up monkey with a peculiar design");
+							roll = RM12DiceRoll();
+							printf("\n You rolled a %d\n", roll);
+
+							if(roll == 1)
+							{
+								puts("Critical Failure!");
+								printf("\n");
+								puts("You go with the flow and wind up the monkey");
+								puts("But the monkey starts making a ticking sound...");
+								puts("Surely it's not what you think...");
+								printf("%s", arr[0]);
+								printf("\n");
+								printf("%s", arr[1]);
+								printf("\n");
+								puts("Instant darkness engulfs you");
+								printf("\n");
+								puts("*********");
+								puts("*FAILURE*");
+								puts("*********");
+								printf("\n");
+								puts("It was, in fact, what you thought it was");
+								printf("\n");
+								puts("A bright flash emminates, and your alive once more. As if seemingly in a loop...");
+							}
+							else if(roll == 20)
+							{
+								puts("NAT 20!?");
+								printf("\n");
+								puts("You crank that monkey at mock speed and hurl it towards the wolves");
+								puts("The monkey emits blue sparks as it prepares to eviscerate the wolf pack");
+								puts("You hear maniacal laughter in your head, as if some blue haired figure somewhere was proud");
+								puts("The monkey explodes");
+								puts("You lay unharmed, having taken cover behind a dense tree");
+								printf("\n");
+								puts("*********");
+								puts("*SUCCESS*");
+								puts("*********");
+								printf("\n");
+								puts("OH THE MISERY, EVERYBODY WANTS TO BE MY ENEMYYY!");
+								printf("\n");
+								puts("You triumphantly strut to the door and head inside");
+								puts("Only to be met with a familar scene...");
+								printf("\n");
+								cleared = 1;
+							}
+							else if(roll <= 10)
+							{
+								puts("Failure");
+								printf("\n");
+								puts("You wind up the monkey, unsure of what it may do");
+								puts("The monkey starts clapping its cymbals and screaming out");
+								puts("Your not much of a thinker, so you charge head first into the wolves with the monkey");
+								puts("Theres a word that perfectly describes your actions... Kamikaze");
+								puts("The monkey explodes and wipes out the wolves... along with anything else in a 10 mile radius");
+								puts("You included");
+								printf("\n");
+								puts("*********");
+								puts("*FAILURE*");
+								puts("*********");
+								printf("\n");
+								puts("Someone needs to go back to bomb safety school");
+								printf("\n");
+								puts("A bright flash emminates, and your alive once more. As if seemingly in a loop...");
+							}
+							else if(roll >=11)
+							{
+								puts("Success?");
+								printf("\n");
+								puts("You wind up the monkey, in hopes it was evil monkey...");
+								puts("Then the monkey started bustin a move");
+								puts("It was funky monkey");
+								puts("You and the wolves were left in confusion");
+								printf("\n");
+								puts("************");
+								puts("*No Contest*");
+								puts("************");
+								printf("\n");
+								puts("Maybe theres a way to win... if only you roll 20");
+								printf("\n");
+								puts("A bright flash emminates, but nothing happens? Lets just take it from the top.");
+							}
 							break;
 						case 4:
 							//code
+							puts("You take out a walkie talkie, time to make a call!");
+							roll = RM12DiceRoll();
+							printf("\n You rolled a %d\n", roll);
+
+							if(roll == 1)
+							{
+								puts("Critical Failure");
+								printf("\n");
+								puts("You turn on the walkie talkie");
+								puts("Theres no signal...");
+								puts("I mean you are stuck in a liminal space, a walkie talkie aint gonna reach someone");
+								puts("Yadda, Yadda, the wolves pounce and eat you");
+								printf("\n");
+								puts("*********");
+								puts("*FAILURE*");
+								puts("*********");
+								printf("\n");
+								puts("A walkie talkie requires 2 holders you know");
+								printf("\n");
+								puts("A bright flash emminates, and your alive once more. As if seemingly in a loop...");
+							}
+							else if(roll == 20)
+							{
+								puts("NAT 20!?");
+								printf("\n");
+								puts("You turn on the walkie talkie in hopes of getting a response");
+								puts("Which you did recieve");
+								puts("But who you recieved it from was not something anyone could have expected...");
+								puts("it was...");
+								puts("Inspector Gadget!");
+								puts("Yes thats right, Inspector Gadget from the 1980's show");
+								puts("He pulls out his gizmoos and thingamabobs to put an end to the wolves");
+								puts("In a family friendly way of course");
+								printf("\n");
+								puts("*********");
+								puts("*SUCCESS*");
+								puts("*********");
+								printf("\n");
+								puts("Go Gadget Go *chorus* Go Gadget Go!");
+								printf("\n");
+								puts("Your friend bids you farewell and you enter the door");
+								puts("Only to be met with a familiar scene...");
+								printf("\n");
+								cleared = 1;
+							}
+							else if(roll <= 10)
+							{
+								puts("Failure");
+								printf("\n");
+								puts("You turn on the walkie talkie and try tuning it to a functional channel");
+								puts("You then realized you've never used a walkie talkie before");
+								puts("The wolves weren't just gonna wait around forever you know");
+								puts("You get mauled while trying to make sense of the walkie talkie");
+								printf("\n");
+								puts("*********");
+								puts("*FAILURE*");
+								puts("*********");
+								printf("\n");
+								puts("Must've never earned your walkie talkie scout badge");
+								printf("\n");
+								puts("A bright flash emminates, and your alive once more. As if seemingly in a loop...");
+							}
+							else if(roll >=11)
+							{
+								puts("Success");
+								printf("\n");
+								puts("You turn on the walkie talkie and you hear someones voice on the other side");
+								puts("No... it was the walkie talkie itself speaking to you!");
+								puts("The walkie talkie leaps out your hand and pulls out a bazooka");
+								puts("It points towards the wolves and says 'Hasta la vista, baby' as it proceeds to fire off a rocket");
+								puts("The wolves are nothing but specs of dust now, and the walkie talkie is nothing more than a brick");
+								printf("\n");
+								puts("*********");
+								puts("*SUCCESS*");
+								puts("*********");
+								printf("\n");
+								puts("Must've been the wind");
+								printf("\n");
+								puts("You make your way to the door admist your confusion and head inside");
+								puts("Only to be met with a familiar scene...");
+								printf("\n");
+								cleared = 1;
+							}
 							break;
 						case 5:
 							//code
+							puts("A gun, you pulled out a gun");
+							roll = RM12DiceRoll();
+							printf("\n You rolled a %d\n", roll);
+
+							if(roll == 1)
+							{
+								puts("Critical Failure");
+								printf("\n");
+								puts("You had the barrel pointing the wrong way :>");
+								puts("You pulled the trigger and iced yourself");
+								puts("Congradulations, pick the most boring option, get the most boring fail");
+								printf("\n");
+								puts("*********");
+								puts("*FAILURE*");
+								puts("*********");
+								printf("\n");
+								puts("Dont pick the gun in a fantasy setting");
+								printf("\n");
+								puts("A bright flash emminates, and your alive once more. As if seemingly in a loop...");
+							}
+							else if(roll == 20)
+							{
+								puts("NAT 20!?");
+								printf("\n");
+								puts("You must've thought there would be a good outcome");
+								puts("Well no, you pull out the gun and place it on the ground");
+								puts("You and the wolves now engage in the most instense game of russian roulette");
+								puts("Don't ask me how a wolf holds a gun but the results weren't pretty");
+								puts("Only 1 wolf was left standing...");
+								puts("Yes... YOU WERE THE WOLF");
+								puts("You put on the skin and flesh of your victims as a trophy");
+								puts("Then, before you could get to the door, you contracted rabies and perished");
+								printf("\n");
+								puts("*********");
+								puts("*FAILURE*");
+								puts("*********");
+								printf("\n");
+								puts("I would put some reference or witty pun here but uh, i just dont want u to win with a gun");
+								printf("\n");
+								puts("A bright flash emminates, likely the muzzle flash, but regardless, you stand once more");
+								puts("As if seemingly in a loop...");
+							}
+							else if(roll <= 10)
+							{
+								puts("Failure");
+								printf("\n");
+								puts("No");
+								puts("The gun dissipates in the air as soon as you pull it out");
+								puts("And the wolves are looking rather famished");
+								puts("You become their dinner and THEY left through the door");
+								puts("The irony");
+								printf("\n");
+								puts("*********");
+								puts("*FAILURE*");
+								puts("*********");
+								printf("\n");
+								puts("Must've lost the 50/50");
+								printf("\n");
+								puts("A bright flash emminates, and your alive once more. As if seemingly in a loop...");
+							}
+							else if(roll >=11)
+							{
+								puts("Failure");
+								printf("\n");
+								puts("Wait... you thought it would be a success?");
+								puts("Why would i let you win with the easy way out?");
+								puts("As you pull out the gun, you realize it's a melt ray");
+								puts("When you pull the trigger, the gun melted");
+								puts("The wolves simply stared at you in disappointment");
+								puts("They didn't even feel like you were worth the effort anymore");
+								puts("But, they still couldn't let you leave, alive that is");
+								puts("So u got eaten, again, and again, and again");
+								printf("\n");
+								puts("*********");
+								puts("*FAILURE*");
+								puts("*********");
+								printf("\n");
+								puts("Choose a real option :>");
+								printf("\n");
+								puts("A dimmly lit nightlight emminates, and your mostly alive again");
+								puts("As if seemingly in a slightly different yet very similar loop...");
+							}
 							break;
 						default:
 							puts("Invalid Selection");
@@ -601,6 +971,7 @@ int main(int argc, char *argv[])
 			case 16:
 			{
 				puts("room16");
+				case16();
 				break;
 			}
 			case 17:
@@ -1088,6 +1459,7 @@ void room11Challenge(void) {
     int choice;
     int randomCode1=(rand()%10)+1;
     int randomCode2=(rand()%10)+1;
+    int attempts=4;
     int guess1, guess2;
     char *hints[3]={
         "The codes are both single-digit numbers.",
@@ -1158,23 +1530,82 @@ void room11Challenge(void) {
                 puts("\nYou failed to guess the code. The chest remains locked, and the water rises. You drowned!");
                 return;
             }
-            case 2:
-                puts("You search the room, but all you find are old dusty books and cobwebs. Nothing useful.");
+		   case 2:{
+                puts("\nYou search the room and find a dusty old book. Inside, you discover the first code is revealed to you!");
+                printf("The first code is %d. Now guess the second code.\n", randomCode1);
+
+                printf("Enter your guess for the second code: ");
+                scanf("%d", &guess2);
+
+                if(guess2==randomCode2){
+                    puts("\nYou guessed correctly! The chest opens, and you escape with the treasure!");
+                    return;
+                }else{
+                    attempts--;
+                    printf("Wrong guess! . You have %d attempt(s) left.\n", attempts);
+                }
                 break;
-            case 3:
-                puts("The spirit guarding the room says: 'I can tell you a secret, but you must prove your worth by guessing both codes correctly.'");
+            }
+
+            case 3:{
+                puts("\nThe spirit guarding the room appears and says: 'Answer my riddle, and I shall reveal one of the codes.'");
+                puts("Riddle: 'I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?'");
+                char answer[50];
+                scanf("%s", answer);
+
+                if(strcasecmp(answer, "echo")==0){
+                    printf("Correct! The first code is %d. Now guess the second code.\n", randomCode1);
+                    printf("Enter your guess for the second code: ");
+                    scanf("%d", &guess2);
+
+                    if(guess2==randomCode2){
+                        puts("\nYou guessed correctly! The chest opens, and you escape with the treasure!");
+                        return;
+                    } else {
+                        attempts--;
+                        printf("Wrong guess!. You have %d attempt(s) left.\n", attempts);
+                    }
+                } else {
+                    puts("Wrong answer! You wasted your time.");
+                }
                 break;
-            case 4:
-                puts("You try the door, but it's locked. There's no way to open it without solving the puzzle.");
+            }
+
+            case 4:{
+                puts("\nYou attempt to escape through the door. You have one attempt to guess the correct number (1-10).");
+                printf("Enter your guess: ");
+                scanf("%d", &guess1);
+
+                if(guess1 ==randomCode1){
+                    puts("\nThe door opens, and you escape! You leave the room victorious!");
+                    return;
+                }else{
+                    puts("\nThe door remains locked. You drowned!");
+                    return;
+                }
                 break;
-            case 5:
-                puts("You attempt to force open the chest with a knife, but it doesn't work. The chest remains locked.");
+            }
+
+            case 5:{
+                puts("\nYou try to pry open the chest with a knife. There’s a 50/50 chance of success...");
+                int knifeAttempt=rand() % 2; // Randomly determine success or failure
+                if(knifeAttempt==1){
+                    puts("You succeed in opening the chest! The gold is yours, and you escape!");
+                    return;
+                }else{
+                    puts("The knife breaks, and the chest remains locked and you drown.");
+                    return;
+                }
                 break;
+            }
+
             default:
                 puts("Invalid choice. Try again.");
+                break;
         }
     }
 }
+
 
 
 int RM12DiceRoll()
@@ -1346,8 +1777,158 @@ void room3(void)
     }
 }
 
+//======================================================================================
+
+
 
 //===============================================================================================
+
+//
+
+int room10bad(int num)
+{
+	puts("You have inputted an inocorrect input");
+	num++;
+	switch(num)
+	{
+		case 1:
+			{
+				puts("----------------------------------------------------------");
+				puts("This has been your first offense a voice shouts");
+			       	puts("DO NOT LET IT HAPPEN AGAIN");
+				puts("----------------------------------------------------------");
+				break;
+			}
+		case 2:
+			{
+				puts("----------------------------------------------------------");
+				puts("This is the second time you inputed a wrong option");
+				puts("You have one last chance to comply or be forced out");
+				puts("----------------------------------------------------------");
+				break;
+			}
+		default:
+				puts("----------------------------------------------------------");
+				puts("this is the end for you a strong wind pushes you out");
+				puts("----------------------------------------------------------");
+	}
+	return num;
+}
+int room10Red(int red){
+	srand(time(NULL));
+	int guess=0;
+	int Cards [5];
+	for(int i =0; i<5; i++)
+	{
+		Cards [i]= rand() % 13+1;	
+		
+	}
+	puts("-----------------------------------------------------------------");
+	puts("You have choosen the red stone");
+	puts("The Stone Glows with power and all of a sudden you are transported to a diffrent room");
+	puts("There is a man with a deck of cards he lays out 4 cards and wants to play a game");
+	puts("each card has a possible number from 1 -13");
+	for(int i=0; i<4;i++)
+	{
+		start:
+		printf("Current Card number: %d\n", Cards[i]);	
+		puts("Is the next Card Higher(1) or Lower(2)?");
+		scanf(" %d", & guess);
+		if((guess == 1 && Cards[i+1]>Cards[i])||(guess == 2 && Cards[i+1]< Cards[i]))
+		{
+			printf("Correct! the answer was : %d\n", Cards[i+1]);
+		}
+		else if((guess == 1 && Cards[i+1]<Cards[i])||(guess == 2 && Cards[i+1]> Cards[i]))
+		{
+			printf("Sorry you are worng the answer is: %d\n", Cards[i+1]);	
+		}
+		else
+		{
+			red = room10bad(red);
+			 if(red==3)
+			 {
+				 break;
+                         }
+                         else
+			 {
+                            goto start;
+                         }
+			
+		}
+
+	}
+	puts("You have completed the game I hope you had fun");
+	red==3;
+	puts("You will now be taken back to the main room ");
+	puts("-----------------------------------------------------------------");
+	return red;
+}
+int room10Blue(int blue)
+{
+	char user = 'y';
+	puts("-----------------------------------------------------------------");
+	puts("You enter a realaxing hot spring there you decide to get in the water to relax");
+	puts("The water is warm and you feel better ");
+	printf("A nice elf says \"You have commited %d errors have a glass water since you are still here \"\n", blue);
+	while(1){
+		
+		puts("do you take the water (y) yes or no (n)");
+		scanf(" %c", &user);
+
+		if(user == 'y')
+		{
+			blue = 0;
+			puts("-----------------------------------------------------------------");
+			puts("somthing feels diffrent about that water ");
+			puts("the elf seems happy to have found a friend");
+			puts("The question now is are you happy with your new friend");
+			puts("either way it doesnt matter as you are taken back to room 10");
+			break;	
+		}
+		else if(user == 'n')
+		{
+			puts("-----------------------------------------------------------------");
+			puts("The elf seems upset with you and slightly offened ");
+			printf("\"can you please take that door and leave\" the elf says\n");
+			puts("A magic door apeared out of nowhere you open it and go back to room 10");
+			break;
+		}
+		else
+		{
+			printf("\"I did not take you as a rebel I respect that\" says the elf\n");
+			blue = room10bad(blue);
+                         if(blue<3)
+                         {
+			 	puts("you are sent back to room 10.");
+				break;
+			 }
+     
+
+		}
+	}
+	return blue;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void Detectivegame() {
     srand(time(NULL));
     int choice;
@@ -1853,6 +2434,109 @@ void room13sid(void)
 }
 
 //------------------------------------------------------------------------------------------------
+
+
+
+void case16()
+{
+	printf("------------------------------\n");
+	printf("Welcome to room 16. This room is full of riddles and quizes. You need to solve all of them to escape from here\n");
+	printf("Your first quest starts now. \nGuess the square of the following number\n");
+
+	int random_number = rand() % 10;
+	printf("The number is %d\n", random_number);
+	printf("\n");
+	int guess;
+	scanf("%d", &guess);
+	if (guess == random_number ^ 2)
+	{
+		printf("You seem to be smart not onto next one\n");
+	}else
+	{
+		printf("You got that wrong. You are thrown out from the room\n");
+		return;
+	}
+
+	printf("------------------------------\n");
+
+	printf("Now next quest, I will give you some clue, If you guess correct, You can pass onto next one\n");
+	printf("From the given details, guess the animal\n");
+	printf("I am found in the deserts of Africa and the Middle East. I have long legs and a hump on my back, which helps me survive long periods without water. I am known for my ability to carry heavy loads and am often called the 'Ship of the Desert.'\n");
+	char animal[30];
+	scanf("%s", animal);
+	if (strcmp(animal, "camel") == 0 || strcmp(animal,"Camel") == 0)
+	{
+		printf("You guessed correct. The animal was camel\n");
+	}
+	else
+	{
+		printf("You are not intelligent enough. Return to the main hall\n");
+		return;
+	}
+
+	printf("------------------------------\n");
+
+	printf("Now Geography question, Guess the capital of Australia\n");
+	printf("a) Sydney\nb) Melbourne\nc) Canberra\nd) Brisbane\n");
+
+	char answer;
+	scanf(" %c", &answer);
+	if (answer == 'c')
+	{
+		printf("You seem to have good geography knowledge. Now onto next question\n");
+	}
+	else
+	{
+		printf("You failed on the third stage");
+		return;
+	}
+
+
+	 printf("------------------------------\n");
+
+	 printf("This is tricky now. Pay attention\n");
+	 printf("What is the total of all the number multiplied on a telephone number pad\n");
+	 int guessTotal;
+	 scanf("%d", &guessTotal);
+	 if (guessTotal == 0)
+	 {
+	 	printf("You have good knowledge in Maths too!. Great. Now the last one\n");
+	 }
+	 else
+	 {
+	 	printf("You failed in simple maths problem");
+		return;
+	 }
+
+
+	  printf("------------------------------\n");
+
+	  char *items[] = {"Apple","Banana","Cherry","Chocolate","Grapes"};
+	  printf("Here are some items. Find the odd one to get yourself out of this room\n");
+	  int num_items = sizeof(items) / sizeof(items[0]);
+
+	  for (int i = 0; i< num_items;i++)
+	  {
+	  	printf("%d) %s\n", i, items[i]);
+	  }
+
+	  int input;
+	  scanf("%d", &input);
+
+	  if (input == 3)
+	  {
+	  	printf("You passed every test i presented. You are now released from this trap");
+	  }
+	  else
+	  {
+		  printf("You failed this test now you will have to choose in between other rooms");
+		  return;
+	  }
+
+
+
+}
+
 
 
 
