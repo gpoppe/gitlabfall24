@@ -15,8 +15,17 @@
 
 //place function prototypes here
 
+void Detectivegame();
+int randomOutcome();
+void displayClues(char *clues[], int cluesFound);
+
 
 void room11Challenge(void);
+
+void roomTwoRS(int reply);
+
+
+void room23Logic();
 
 int RM12DiceRoll();
 
@@ -25,11 +34,27 @@ int RM12DiceRoll();
 int rps_game(char handGuess, char cpuGuess);
 
 void room3(void);
+void mysteryItemGame(void);
+
+
+void case16(void);
+
+void room30(void);
+
+
+void Room26FindTheKey(void);
+
+void room18(void);
+
+void room13sid(void);
+
+
 
 
 
 int main(int argc, char *argv[])
 {
+
 	int choice = 0;
 	char name[30] = "bob";
 	srand(time(NULL));
@@ -181,8 +206,40 @@ int main(int argc, char *argv[])
 			}	
 			case 2:
 			{
-				puts("room2");
-//raquel
+				//Raquel Serratos
+				printf("\n\tYou open door number two and step into a dark room. The door clicks shut behind you, locking you in. \n\tThe only light source is coming from a single lit candle on a table in the center of the room. \n\tSitting there, bathed in the glow, is a goblin with a menacing grin. \n\t\"Your only way out of this room is by winning my challenge,\" it rasps.");
+
+				for(int i = 0; i < 3; i++)
+				{
+					int reply = 0;
+					printf("\n\n\t\"Choose one of the following games.\" demands the goblin.\n\t1. Coin Toss\n\t2. Math Problem\n\t3. Guess a Number\n");
+
+					do{
+						printf("Enter a valid choice: ");
+						scanf("%d", &reply);
+					}
+					while(reply != 1 && reply != 2 && reply != 3);
+
+					roomTwoRS(reply);
+
+					getchar();
+					printf("\n\nPress any key to continue...\n");
+					getchar();
+
+					if(i != 2)
+					{
+						printf("\n\n\t\"I lied! I want to play another game and if you don't agree I will curse you,\" the goblin threathened menacingly.");
+					}
+				}
+
+				roomTwoRS(4);
+
+				getchar();
+				printf("\n\nPress any key to continue...\n");
+				getchar();
+
+				printf("\n\tThe goblin, growing increasingly bored with your attempts, narrows his eyes and stands up abruptly.\n\t\"Enough!\" he snarled, \"I tire of games with you.\"\n\tWith a swift motion, he kicks you out of the room, and the door slams shut behindn you.\n\n");
+
 				break;
 			}
 			case 3:
@@ -201,12 +258,14 @@ int main(int argc, char *argv[])
 			{
 				puts("room5");
 				//Sathwika
+				Detectivegame();
 				break;
 			}
 			case 6:
 			{
 				//anushka
-				puts("room6");
+				puts("Welcome to the Mystery Item Game!");
+				mysteryItemGame();
 				break;
 			}
 
@@ -404,7 +463,7 @@ int main(int argc, char *argv[])
 			}
 			case 13:
 			{
-				puts("room13");
+				room13sid(); //calls to room 13
 //sidney
 				break;
 			}
@@ -423,6 +482,7 @@ int main(int argc, char *argv[])
 			case 16:
 			{
 				puts("room16");
+				case16();
 				break;
 			}
 			case 17:
@@ -434,6 +494,8 @@ int main(int argc, char *argv[])
 			case 18:
 			{
 				puts("room18");
+				// Kingslee Velu
+				room18();
 				break;
 			}
 			case 19:
@@ -460,7 +522,40 @@ int main(int argc, char *argv[])
 //Corvalis Room - 23
 			case 23:
 			{
-				puts("room23");
+				
+				puts("===== Room23: Corvalis' Room =====");
+				printf("\n\nYour transported to what seems to be a space craft floating adrift the cosmos. What do you do?\n");
+
+				puts("1. Turn back");
+				puts("2. Walk up to space ship controls");
+				puts("3. Do a dance");
+				scanf("%d",&choice);
+
+				switch(choice){
+
+
+					case 1:
+					{
+						puts("\n[You do a swift about face and leave the spaceship]\n");
+					}
+					break;					
+
+
+					case 2:
+					{
+						puts("\n[Something interesting happens!]\n");
+						room23Logic();
+						
+					}
+					break;
+
+
+					case 3:
+					{
+						puts("\n[You do the boogey woogie. Satisified with your dance amongst the stars. You take your leave]\n");
+					}
+					break;
+				}
 				break;
 			}
 			case 24:
@@ -475,6 +570,8 @@ int main(int argc, char *argv[])
 			}
 			case 26:
 			{
+				// Camila Ramirez
+				Room26FindTheKey();
 				puts("room26");
 				break;
 			}
@@ -495,8 +592,12 @@ int main(int argc, char *argv[])
 			}
 			case 30:
 			{
-				puts("room30");
-//ivan
+				puts("you enter room30 \n");
+                                room30();
+				
+				
+				//ivan
+				
 				break;
 			}
 			case 31:
@@ -635,6 +736,233 @@ int main(int argc, char *argv[])
 }
 
 //place functions here
+
+
+//Room 23 Function
+void room23Logic(){
+	//make 4 indiidual choices
+	//use one loop, one array, a nradom number
+	//retyrn back to the og loop
+	int choice;
+
+	puts("You see a complex array of controls before you. Several glowing buttons and shining levers. And a simple keyboard connected to a screen displaying a program called SpaceSearch.com");
+	puts("What will you do now?");
+
+	puts("1. Press a button");
+	puts("2. Pull a lever");
+	puts("3. Use the search box");
+
+
+
+	scanf("%d", &choice);
+
+
+	if(choice == 1){
+
+		int buttonChoice;
+		int countdown = rand() % 10 + 1;
+		int maxButtons = 10;
+		int randButton = rand() % maxButtons + 1;
+
+		puts("The lights begin glowing red, blaring alarms as an annocument comes over the speakers.");
+		puts("S E L F  D E S T R U C T  I N I T I A T E D");
+		printf("DESTRUCTION IN : %d\n", countdown);
+		printf("\nYou panic, realizing you need to fight the right button to deactive the explosion. There are %d random buttons that light up as possible options\n", maxButtons);
+
+		do{
+
+			printf("\nChoose a button between 1 and %d\n",maxButtons);
+			scanf("%d", &buttonChoice);
+
+			if(buttonChoice == randButton){
+				puts("The alarms stop blaring, and you now know you are safe. With a sigh of releif, you take your leave of this flying metal death trap.\n\n");
+
+			}
+
+			else{
+				puts("That button was not correct");
+				countdown--;
+				printf("DESTRUCTION IN : %d\n", countdown);
+			}
+
+		}
+		while(buttonChoice != randButton && countdown > 0);
+
+		if(countdown <= 0){
+			puts("The ship shutters violently, as your vision is consumbed by a bright light. Then everything goes dark with as you hear a lightbulb burn out.\n\n");
+		}
+
+	}
+
+	if(choice == 2){
+
+		int choice2;
+
+		puts("You warp forward twaord a nearby star, with no destiation selected. You'll burn up on impact if you don't take control!");
+		puts("1. Steer away");
+		puts("2. Let it go");
+		puts("3. Do a 360");
+
+		scanf("%d", &choice2);
+
+
+		if(choice2 == 1){
+			puts("You narroly avoid the star, stearing clear of the blazing inferno");
+		}
+		else if(choice2 == 2){
+			puts("You smash right into the star, supercharging your ships engines, causing them to go even faster!");
+		}
+		else if (choice2 == 3){
+			puts("You pull a sick 360, spining at such speeds that you glide around the side. Making you slightly dizzy");
+		}
+		else {
+			puts("You perform an unexpected manuver! Causing you to smash through the star, causing it to go supernova!");
+		}
+	
+		puts("Unfortuatly you couldn't control the ships speed, and kept moving faster. Eventually the world melts away as you transend our dimension.\n\n");
+
+	}
+
+	if(choice ==3){
+		int vacationID;
+		int locCount = 5;
+		char locations[5][20] = {
+
+		"Thahiti",
+		"Earth",
+		"Glip Glorb 5",
+		"Lava planet"
+		"No where"
+		};
+		puts("\n\nYou open the browser as it prompts you to type in a destiation as a number. The page is labeled with the following");
+		puts("TYPE IN AN ID TO YOUR NEW SPACE VACATION DESTINATION!");
+		puts("Enter a number between 1-5");
+		scanf("%d",&vacationID);
+
+		char *vacation;
+		if(vacationID >= locCount){
+			vacation = "A random place";
+			//printf("\nYou selected your vacation spot to %s! Enjoy your stay!\n\n",vacation);
+		}
+
+		else{
+			vacation = locations[vacationID-1];
+		}
+		
+		printf("\nYou selected your vacation spot to %s! Enjoy your stay!\n\n",vacation);
+		puts("The ship warps away to your new destination, and you spend a few years there in relaitive comfort. One day when louging around you close your eyes going into a deep sleep...\n\n");
+	}
+
+
+	if(choice < 1 || choice > 3){
+		printf("Choice count %d\n",choice);
+		puts("You do something...unexpected. Your moves and actions were so crazy that somehow you ended up in the vaccume of space. Despite being cool, you drift into the void of space until you loose consiousness. You wake up back where you started\n\n");
+	}
+}
+
+// Anushka's function
+
+void mysteryItemGame()
+{
+	char items[5][20] = {"treasure key", "magic potion", "ancient box", "old map", "fortune coin"};
+	int bagCapacity = 3;
+	int bagCount = 0;
+
+	while(1)
+	{
+		puts("You find yourself in a room filled with dust and cobwebs.");
+		puts("As you look around you see a book shelf with a few books and a few empty shelves.");
+		int randomEvent = rand() % 5 + 1; 
+		int randomItem = rand() % 5 + 1; 
+		switch (randomEvent)
+		{
+			case 1:
+				printf("You found a %s hidden in a crack of the book shelf!\n", items[randomItem - 1]);
+				break;
+			case 2:
+				printf("A %s glints in the shadows!\n", items[randomItem - 1]);
+				break;
+			case 3:
+				printf("You discover a %s beneath some dust!\n", items[randomItem - 1]);
+				break;
+			case 4:
+				printf("You notice a %s tucked away behind a loose brick!\n", items[randomItem - 1]);
+				break;
+			default:
+				printf("Nothing interesting happens this time.\n");
+				break;
+		}
+
+		char choice;
+
+		if (randomEvent != 5) 
+		{
+			puts("Would you like to keep the item? (y/n)");
+			
+			scanf(" %c", &choice);
+			if(choice == 'y')
+			{
+				if(bagCount < bagCapacity)
+				{
+					printf("You put the %s in your bag.\n", items[randomItem - 1]);
+					bagCount++;
+				}
+				else
+				{
+					puts("Your bag is full! Would you like to empty your bag and keep the item? (y/n)");
+					scanf(" %c", &choice);
+					if(choice == 'y')
+					{
+						puts("You empty your bag and put the new item in.");
+						bagCount = 1; 
+					}
+					else
+					{
+						puts("You discard the item.");
+					}
+				}
+			}
+			else
+			{
+				puts("You leave the item behind.");
+			}
+		}
+		
+
+		puts("Would you like to search the room again? (y/n)");
+		scanf(" %c", &choice);
+		if(choice != 'y')
+		{
+			puts("You notice two more paths to explore:");
+			puts("1. A narrow staircase leading downwards.");
+			puts("2. A hidden door behind the bookshelf.");
+			puts("Which path do you choose? (1/2)");
+			int roomChoice;
+			scanf("%d", &roomChoice);
+			if (roomChoice == 1)
+			{
+				puts("You descend the staircase and find a hidden chamber.");
+				puts("It leads back to the room with the 55 doors.");
+				puts("Thanks for playing!");
+				break;
+			}
+			else if (roomChoice == 2)
+			{
+				puts("You open the hidden door and discover a secret passage.");
+				puts("It leads to a room with a treasure chest.");
+				puts("You open the chest and find a golden crown!");
+				puts("Congratulations!");
+				break;
+			}
+			else
+			{
+				puts("Invalid choice, you stay put.");
+			}
+		}
+	}	
+
+}
+
 
 //room 11 function
 
@@ -959,5 +1287,619 @@ void room3(void)
             printf("Invalid choice. Please choose between 1 and 5.\n");
     }
 }
+
 //======================================================================================
+
+
+
+//===============================================================================================
+void Detectivegame() {
+    srand(time(NULL));
+    int choice;
+    int gameOver = 0;
+    int cluesFound = 0;
+    int mysterySolved = 0;
+    char *clues[5];  
+
+    printf("Welcome to the Detective Mystery Game!\n");
+    printf("You are a detective solving a robbery case that went terribly wrong.\n");
+    printf("Your goal is to investigate, find clues, and solve the mystery before the case goes cold.\n");
+    printf("Good luck, Detective!\n");
+
+    while (!gameOver) {
+        puts("\nWhat would you like to do?");
+        puts("1. Investigate the crime scene");
+        puts("2. Interview a witness");
+        puts("3. Analyze evidence in the lab");
+        puts("4. Follow a suspicious lead");
+        puts("5. Close the case");
+        puts("Enter your choice:");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("\nYou arrive at the crime scene. It looks like a robbery gone wrong.\n");
+                int sceneClue = randomOutcome();
+                if (sceneClue == 0) {
+                    printf("You find a fingerprint on the window ledge. It's a lead!\n");
+                    clues[cluesFound] = "Fingerprint on the window ledge";
+                    cluesFound++;
+                } else {
+                    printf("You search the area but find nothing useful.\n");
+                }
+                break;
+
+            case 2:
+                printf("\nYou interview a witness.\n");
+                int witnessClue = randomOutcome();
+                if (witnessClue == 0) {
+                    printf("The witness remembers seeing a red car near the scene!\n");
+                    clues[cluesFound] = "Witness saw a red car";
+                    cluesFound++;
+                } else {
+                    printf("The witness is too shaken to recall any helpful details.\n");
+                }
+                break;
+
+            case 3:
+                printf("\nYou head to the forensics lab to analyze the evidence.\n");
+                int labClue = randomOutcome();
+                if (labClue == 0) {
+                    printf("The fingerprint matches a known criminal from previous cases!\n");
+                    clues[cluesFound] = "Fingerprint matched a known criminal";
+                    cluesFound++;
+                } else {
+                    printf("The evidence is inconclusive. You'll need more clues to make a breakthrough.\n");
+                }
+                break;
+
+            case 4:
+                printf("\nYou decide to follow up on the lead about the red car.\n");
+                int leadOutcome = randomOutcome();
+                if (leadOutcome == 0) {
+                    printf("The car is traced back to a warehouse in the industrial district. You find more evidence linking it to the suspect!\n");
+                    clues[cluesFound] = "Red car traced to warehouse";
+                    cluesFound++;
+                } else {
+                    printf("The lead goes cold. No further information is uncovered.\n");
+                }
+                break;
+
+            case 5:
+                if (cluesFound >= 3) {
+                    printf("\nYou have gathered enough clues to close the case.\n");
+                    printf("The criminal has been apprehended, and the case is now solved. Great job, Detective!\n");
+                    mysterySolved = 1;
+                } else {
+                    printf("You don't have enough evidence to close the case. Keep investigating.\n");
+                    displayClues(clues, cluesFound);
+                }
+                break;
+
+            default:
+                printf("\nInvalid choice. Please try again.\n");
+                break;
+        }
+        if (mysterySolved) {
+            gameOver = 1;
+        }
+    }
+}
+
+int randomOutcome() {
+    return rand() % 2;
+}
+
+void displayClues(char *clues[], int cluesFound) {
+    printf("\nClues collected so far:\n");
+    if (cluesFound == 0) {
+        printf("No clues found yet. Keep investigating!\n");
+    } else {
+        for (int i = 0; i < cluesFound; i++) {
+            printf("- %s\n", clues[i]);
+        }
+    }
+}
+
+
+//room30 Ivan
+
+void room30(void){
+	
+	puts(" Oh my goodness the door opened up to a datacenter of some sorts? \n ");
+
+	puts(" What do you do? \n");
+	puts(" 1. Go back to the room 30 door universe \n");
+	puts(" 2. Stand still and chill out \n");
+	puts(" 3. Explore the datacenter \n");
+
+
+	puts(" Input your decision as 1,2, or 3 \n");
+	
+	int choice = 3;
+
+	scanf("%d", &choice);
+	
+	if(choice == 1){
+		puts(" You go back to the 99 doors \n");
+		return;
+	}
+	if(choice == 2) {
+		puts(" You stand and wait, eventually get bored and explore the datacenter \n");
+	}
+	
+	puts(" So now you explore the datacenter, where do you want to go \n");
+
+    char *options[5] = {
+        "Look at the server racks",
+        "Look for a different room",
+        "Look at the floor",
+        "Search for the power source",
+        "Wreak Havoc"
+    };
+
+    srand(time(NULL));
+
+    int daUsachoices = 0;
+
+    for (int i = 0; i < 5; i++) {
+	
+        for (int j = 0; j < 5; j++) {
+	    // loop to print options
+            printf("%d. %s \n", j + 1, options[j]);
+        }
+
+        puts(" \n  Input your decision as 1,2,3,4, or 5 ");
+	puts(" or if u feel spicy, put anything over 6. ie 6-999 for a random choice \n");
+
+
+        int userChoice;
+        scanf("%d", &userChoice);
+
+        if (userChoice < 1 || userChoice > 5) {
+            puts("Invalid choice! For some reason you randomly choose by playing rock paper scissors with yourself \n ");
+            // random choice
+	    userChoice = (rand() % 5) + 1; 
+        }
+	
+	
+	switch (userChoice) {
+            case 1:
+                puts("You inspect the server racks, Each time noticing more details \n");
+                daUsachoices += 1;            
+		break;
+
+            case 2:
+                puts("You look for rooms around the datacenter, heck a bathroom please. Too bad no dice. \n");
+                daUsachoices += 2;
+		break;
+
+            case 3:
+                puts("You look at the floor. Absolutely mental. \n");
+                daUsachoices += 3;                
+		break;
+
+            case 4:
+                puts("You search for the power source that is powering this massive datacenter. \n ");
+                daUsachoices += 4;
+		break;
+
+            case 5:
+                puts(" You walk around destroying stuff, yeah you think your so cool. In fact you litter the floor with INTEL CORE 9HX 64 PROCESSERS. AVAILABLE AT NOW!. SPONSORED BY RAID SHADOW LEGENDS \n ");
+                daUsachoices += 5;
+		break;
+
+            default:
+                puts("You stand there, unsure of what to do.");
+                break;
+        }
+		
+    }
+	
+    puts("Wow what an adventure \n");
+	
+    if(daUsachoices == 5){
+    	puts("OH MY GOSH, AN AI LLM VERSION OF JEFF BEZOS APPEARS. \n");
+	puts("YOU HAVE BEEN OFFERED 70 billion dollars! \n");
+     puts("While grabbing the money, you sadly slipped and fell and are back to the rooms \n");
+     return;
+    }
+	
+    if(daUsachoices == 10){
+        puts(" there was not bathroom. \n");
+	return;
+    }
+
+    if(daUsachoices == 15){
+        puts(" The Floor speaks to you in no other ways. You are floor. Too bad your back to the rooms. \n");
+        return;
+    }
+    
+    if(daUsachoices == 20){
+        puts(" You found the power source. Turns out it was a huge tokamak fusion reactor. Cool. You wanted to eat some plasma but you sadly got teleported. \n");
+        return;
+    }
+    
+    if(daUsachoices == 25){
+        puts(" The datacenter explodes. Like humongous explosion. Great work. Anyway after the explosion you are kicked back into the 99 rooms by ChatGpt. \n");
+        return;
+    }
+
+    if(daUsachoices == 19){
+        puts(" Secret. Great. you win everything. Goodbye. \n");
+        return;
+    }
+
+
+
+}
+
+
+
+
+
+
+//===============================================================================================
+
+
+//===============================================================================================
+
+
+
+
+void Room26FindTheKey()
+{
+        int tries = 5;
+        int randomKeys = rand() % 10 + 1;
+        int guess;
+        int keys[10];
+        bool foundKey = false;
+
+        // make random locations
+        for (int i = 0; i < 10; i++)
+        {
+                keys[i] = 0;
+        }
+        keys[randomKeys - 1] = 1;
+
+        printf("You entered room 27. To enter the next door find the hidden key in one of the boxes.\n");
+
+        printf("You have 5 tries to find the key. Choose a number between 1 and 10.\n");
+        // while the user is guessing
+        while (guess > 0 && !foundKey)
+        {
+                printf("\nEnter your choice of box: ");
+                scanf("%d", &guess);
+
+                if (guess < 1 || guess > 10)
+                {
+                        printf("You must choose a number between 1 and 10. Try again.\n");
+                        continue;
+                }
+
+                if (keys[guess - 1] == 1)
+                {
+                        printf("You got the right box at %d! Congrats!\n", guess);
+                        foundKey = true;
+                }
+
+                else
+                {
+                        printf("There was no key in the box %d. Try Agin\n", guess);
+                }
+
+                tries--;
+
+                if (!foundKey && tries > 0)
+                {
+                        printf("You have %d tries remaining.\n", tries);
+                }
+        }
+
+        if (!foundKey)
+        {
+                printf("You ran out of tries. The key was in box %d.\n", randomKeys);
+        }
+}
+
+//Room 18 Function
+//===============================================================================================
+void room18(void) {
+    int choices[5] = {0};
+    int randomNum;
+    int guess, attempts = 0;
+    char playAgain;
+
+    printf("Welcome to Room 18!\n");
+    printf("Here, you will play random number guessing game.\n");
+    printf("You have 5 attempts to guess correct number b/w 1 and 20.\n");
+
+    // Generate random num
+    srand(time(NULL));
+    randomNum = (rand() % 20) + 1;
+
+    do {
+        printf("Enter your guess (1-20): ");
+        scanf("%d", &guess);
+        attempts++;
+
+        if (guess == randomNum) {
+            printf("Congrat! You guessed the correct number: %d\n", randomNum);
+            break;
+        } else if (guess < randomNum) {
+            printf("Too low. Try again.\n");
+        } else {
+            printf("Too high. Try again.\n");
+        }
+
+        // Store the guess count
+        choices[attempts - 1] = guess;
+
+        if (attempts == 5) {
+            printf("You used all the attemps. The correct number was %d.\n", randomNum);
+            break;
+        }
+    } while (1);
+
+    printf("\nYour guesses are: ");
+    for (int i = 0; i < attempts; i++) {
+        printf("%d ", choices[i]);
+    }
+    printf("\n");
+
+	printf("Would you like to play again in Room 18? (y/n): ");
+    scanf(" %c", &playAgain);
+
+    if (playAgain == 'y' || playAgain == 'Y') {
+        room18();
+    } else {
+        printf("Returning to the main menu...\n");
+    }
+
+}
+
+void roomTwoRS(int reply)
+{
+	//switch statement
+	switch(reply)
+	{
+		case 1:
+			srand(time(NULL));
+			int answers[5];
+			int wins = 0;
+			int losses = 0;
+
+			for(int i = 0; i < 3; i++)
+			{
+				answers[i] = (rand() % 2);
+			}
+
+			printf("\n\t\"I challenge you to a coin toss, \"the goblin laughed. \"\tYou must guess correctly at least 2 out of 3 coin tosses to win your freedom.\"");
+
+		        for(int i = 0; i < 3; i++)
+        		{
+                		do{
+                        		printf("\n\tEnter 0 for heads or 1 for tails (ROUND %d): ", i+1);
+		                        scanf("%d", &reply);
+				} while(reply != 1 && reply != 0);
+
+		                if(answers[i] == reply)
+                		{
+                        		printf("\tCorrect");
+		                        wins += 1;
+                		}
+                		else
+		                {
+                	        	printf("\tWrong");
+	                        	losses += 1;
+        		        }
+		                printf("\t\t***TOTAL WINS: %d\t***TOTAL LOSSES: %d\t", wins, losses);
+        		}
+
+		        if(wins >= 2)
+		        {
+                		printf("\n\n\tYou Won!");
+				break;
+        		}
+        		printf("\n\n\tYou lost.");
+			break;
+
+		case 2:
+			int x = 1 + (rand() % 40);
+			int y = 1 + (rand() % 30);
+
+			printf("\n\tThe goblin cackles and taunts, \"Let's see if you can solve this equation correctly!\"\n\t%d + ((%d - %d) * %d) = ?\nEnter your answer: ", 10 * x, 2 * y, 3 * x, y);
+			x = (10 * x) - (((2 * y) - (3 * x)) * y);
+			scanf("%d", &reply);
+
+			if(x == reply)
+			{
+				printf("\n\t\"Inconceivable, You Are Correct!\" said the goblin unhappily.");
+				break;
+			}
+			printf("\n\t\"Wrong. The answer is %d,\" sneered the goblin.", x);
+			break;
+		case 3:
+			int rando = 10 + (rand() % 101);
+			printf("\n\t\"The goblin's eyes gleamed with mischief. \"Guess a number between 1 and %d\", the goblin challenged, its wicked grin widening.\nEnter your guess: ", rando);
+	        	scanf("%d", &reply);
+
+			rando = 1 + (rand() % rando);
+
+			if(reply == rando)
+       			{
+	        	        printf("\n\t\"Impossible! You guessed correctly!\" screamed the goblin.");
+				break;
+        		}
+	        	printf("\n\t\"Wrong! The answer was %d\", mocked the goblin", rando);
+			break;
+		case 4:
+			printf("\n\n\tThe goblin decides to try a trickier challenge. He offers the following riddle.\n\tA plane with 21 first class passengers and 55 economy class passengers flying to Canada crashed on the border between Canada and the United States.\n\tHow many survivors should be buried in Canada?\n\n\tEnter a digit only: ");
+			scanf("%d", &reply);
+			if(reply == 0)
+			{
+				printf("\n\t\"Fine you win again,\" growled the goblin.\n");
+				break;
+			}
+			printf("\n\t\"Wrong. You cannot bury survivors.\"sighed the goblin unimpressed.\n");
+			break;
+	}
+}
+
+
+
+//===============================================================================================
+
+// sidney's function ----------------------------------------------------------------------------
+void room13sid(void)
+{
+	int actionsid, rngsid;
+	char proceedsid = 'y';
+	printf("You open Door 13... you step into a chilling room filled with whispers and an eerie feeling..\n");
+	while (proceedsid == 'y' || proceedsid == 'Y')
+	{
+		puts("\nWhat would you like to do?");
+		puts("1. Investigate the whispers and where they're coming from.");
+		puts("2. Open the glowy green box on the table.");
+		puts("3. Look behind the curtains drenched in blood.");
+		puts("4. Examine the words written in blood on the walls that spell out HELP.");
+		puts("5. Leave the room.");
+		scanf("%d", &actionsid);
+
+		switch (actionsid)
+		{
+			case 1:
+				printf("As you approach the whispers, you see something walking in the distance.. a shadowy figure perhaps? It leaves an icy chill down ur back.\n");
+				break;
+			case 2:
+				rngsid = rand() %2;
+				if (rngsid == 0)
+					printf("The box contains a candle that flickers. It seems harmless?\n");
+				else
+					printf("The box bursts open and a ghostly figure pops out screaming!\n");
+				break;
+			case 3:
+				printf("Behind the curtains you find a mirror but you can't see your reflection. It breaks.\n");
+				break;
+			case 4:
+				printf("You quickly run out of Door 13, heart pounding and sanity at 1%%.\n");
+				proceedsid = 'n';
+				break;
+			default:
+				printf("The room grows colder as you hesitate. Make a valid choice!\n");
+		}
+
+		if (proceedsid != 'n')
+		{
+			printf("Do you want to continue exploring Door 13? (y/n): ");
+			scanf(" %c", &proceedsid);
+		}
+	}
+}
+
+//------------------------------------------------------------------------------------------------
+
+
+
+void case16()
+{
+	printf("------------------------------\n");
+	printf("Welcome to room 16. This room is full of riddles and quizes. You need to solve all of them to escape from here\n");
+	printf("Your first quest starts now. \nGuess the square of the following number\n");
+
+	int random_number = rand() % 10;
+	printf("The number is %d\n", random_number);
+	printf("\n");
+	int guess;
+	scanf("%d", &guess);
+	if (guess == random_number ^ 2)
+	{
+		printf("You seem to be smart not onto next one\n");
+	}else
+	{
+		printf("You got that wrong. You are thrown out from the room\n");
+		return;
+	}
+
+	printf("------------------------------\n");
+
+	printf("Now next quest, I will give you some clue, If you guess correct, You can pass onto next one\n");
+	printf("From the given details, guess the animal\n");
+	printf("I am found in the deserts of Africa and the Middle East. I have long legs and a hump on my back, which helps me survive long periods without water. I am known for my ability to carry heavy loads and am often called the 'Ship of the Desert.'\n");
+	char animal[30];
+	scanf("%s", animal);
+	if (strcmp(animal, "camel") == 0 || strcmp(animal,"Camel") == 0)
+	{
+		printf("You guessed correct. The animal was camel\n");
+	}
+	else
+	{
+		printf("You are not intelligent enough. Return to the main hall\n");
+		return;
+	}
+
+	printf("------------------------------\n");
+
+	printf("Now Geography question, Guess the capital of Australia\n");
+	printf("a) Sydney\nb) Melbourne\nc) Canberra\nd) Brisbane\n");
+
+	char answer;
+	scanf(" %c", &answer);
+	if (answer == 'c')
+	{
+		printf("You seem to have good geography knowledge. Now onto next question\n");
+	}
+	else
+	{
+		printf("You failed on the third stage");
+		return;
+	}
+
+
+	 printf("------------------------------\n");
+
+	 printf("This is tricky now. Pay attention\n");
+	 printf("What is the total of all the number multiplied on a telephone number pad\n");
+	 int guessTotal;
+	 scanf("%d", &guessTotal);
+	 if (guessTotal == 0)
+	 {
+	 	printf("You have good knowledge in Maths too!. Great. Now the last one\n");
+	 }
+	 else
+	 {
+	 	printf("You failed in simple maths problem");
+		return;
+	 }
+
+
+	  printf("------------------------------\n");
+
+	  char *items[] = {"Apple","Banana","Cherry","Chocolate","Grapes"};
+	  printf("Here are some items. Find the odd one to get yourself out of this room\n");
+	  int num_items = sizeof(items) / sizeof(items[0]);
+
+	  for (int i = 0; i< num_items;i++)
+	  {
+	  	printf("%d) %s\n", i, items[i]);
+	  }
+
+	  int input;
+	  scanf("%d", &input);
+
+	  if (input == 3)
+	  {
+	  	printf("You passed every test i presented. You are now released from this trap");
+	  }
+	  else
+	  {
+		  printf("You failed this test now you will have to choose in between other rooms");
+		  return;
+	  }
+
+
+
+}
+
+
 
