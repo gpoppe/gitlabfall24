@@ -1,6 +1,6 @@
 //contributors
 //GP
-//
+//Yyong Taing
 //
 
 
@@ -34,6 +34,10 @@ int RM12DiceRoll();
 int rps_game(char handGuess, char cpuGuess);
 
 void room3(void);
+
+
+void room8(void);
+
 void mysteryItemGame(void);
 
 
@@ -52,6 +56,7 @@ void Room26FindTheKey(void);
 void room18(void);
 
 void room13sid(void);
+
 
 
 
@@ -290,7 +295,8 @@ int main(int argc, char *argv[])
 			case 8:
 			{
 			//yyong 
-				puts("room8");
+				puts("*YOU HAVE ENTERED LUCKY ROOM 8!*");
+				room8();
 				break;
 			}
 //
@@ -952,11 +958,130 @@ int main(int argc, char *argv[])
 				puts("room28");
 				break;
 			}
-			case 29:
+		case 29:
+		//Alec Magsombol
 			{
-				puts("room29");
-				break;
+				puts("Welcom to Room 29, the Haunted Mansion Adventure!");
+				int roomChoice;
+				char continuePlaying = 'y';
+
+				while (continuePlaying == 'y') {
+					puts("\nYou stand in the main hall of the Haunted Mansion. Which 5 rooms will you pick?");
+					puts("1. The Library");
+					puts("2. The Kitchen");
+					puts("3. The Cellar");
+					puts("4. The Attic");
+					puts("5. The Courtyard");
+					puts("Choose a room between 1 and 5, or press 0 to return to the main hall.");
+					scanf("%d", &roomChoice);
+
+					switch (roomChoice) {
+						case 1: {
+								puts("\nYou enter the Library, where ancient books whispter dark secrets.");
+								puts("You notice a glowing book. Do you take it? (y/n)");
+								char takeBook;
+								scanf(" %c", &takeBook);
+								if (takeBook =='y') {
+									puts("It's glowing brighter!");
+									int riddleAnswer;
+									puts("A voice asks 'I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?'");
+									puts("1. A shadow\n2. An echo\n3. A ghost");
+									scanf("%d", &riddleAnswer);
+								        if (riddleAnswer == 2) {
+										puts("The book reveals a hidden key! You take it and leave the room.");
+									} 
+									else {
+										puts("The book bursts into flames! You run out of the library, empty-handed.");
+									}
+								} else {
+									 puts("You leave the book and return to the hall.");
+								}
+								break;
+							}
+							case 2: {
+									puts("\nYou step into the Kitchen of Whispers. Pots and pans clatter on their own.");
+									puts("You see a cauldron bubbling with a strange liquid.");
+									puts("Will you taste the liquid? (y/n)");
+									char tasteLiquid;
+									scanf(" %c", &tasteLiquid);
+									if (tasteLiquid == 'y') {
+										puts("The liquid grants you a vision of a hidden treasure in the mansion!");
+										int treasureRoom = 1 + rand() % 5; // Randomly select a room where the treasure is hidden
+														    									 printf("The vision shows the treasure is in Room %d. You return to the hall to find it.\n", treasureRoom);
+									} else {
+										puts("You decide not to taste it and leave the kitchen.");
+									}
+									break;
+								}
+							 case 3: {
+									 puts("\nYou descend into the Cellar of Secrets. It's dark and damp, and you hear faint whispers.");
+									 puts("A locked chest lies in the corner.");
+									 int chestCode = rand() % 100; // Generate a random two-digit code
+									 int guess;
+									 puts("You must guess the two-digit code to open the chest. You have three attempts.");
+									 for (int attempts = 3; attempts > 0; --attempts) {
+										 printf("Enter your guess: ");
+										 scanf("%d", &guess);
+										 if (guess == chestCode) {
+											 puts("The chest opens, revealing a golden artifact! You return to the hall with your prize.");
+											 break;
+										 } else if (attempts > 1) {
+											 puts("Wrong code! Try again.");
+										 }else {
+											puts("The chest remains locked. You leave the cellar.");
+										 }
+									 }
+									 break;
+								 }
+							 case 4: {
+									 puts("\nYou climb into the Attic of Apparitions.");
+									 puts("A ghostly figure appears and offers you a choice.");
+									 puts("1. Accept challenge\n2. Ignore and leave");
+									 int ghostChoice;
+									 scanf("%d", & ghostChoice);
+									 if (ghostChoice == 1) {
+										 int diceRoll = 1 + rand() % 6;
+										 printf("The ghost challenges you to roll 5 or 6 on a die to win.\nYou rolled: %d\n", diceRoll);
+										 if (diceRoll >= 5) {
+											 puts("You won a gem!");
+										 } else {
+											 puts("You leave empty-handed.");
+										 }
+									 } else {
+										 puts("You avoid the challenge.");
+									 }
+									 break;
+								 }
+							   case 5: {
+									   puts("\nYou walk into the Courtyard.");
+									   puts("A mysterios figure offers a trade: an item from your inventory for something unknown.");
+									   puts("Make the trade? (y/n)");
+									   char tradeChoice;
+									   scanf(" %c", &tradeChoice);
+									   if (tradeChoice == 'y') {
+										   puts("The figure gives you an amulet!");
+									   } else {
+										   puts("You decline.");
+									   }
+									   break;
+								   }
+							   case 0:
+								   puts("You leave and return to the Main Hall.");
+								   continuePlaying = 'n';
+								   break;
+							   default:
+								   puts("Invalid choice. Please choose a room between 1 and 5, or 0 to exit.");
+					}
+
+					if (roomChoice !=0) {
+						puts("\nWould you like to explore another room? (y/n)");
+						scanf(" %c", &continuePlaying);
+					}
+					puts("Thanks for playing!");
+					break;
+				}
 			}
+
 			case 30:
 			{
 				puts("you enter room30 \n");
@@ -1105,6 +1230,103 @@ int main(int argc, char *argv[])
 //place functions here
 
 
+
+//Yyong's Function
+void room8(void)
+{
+        puts("There are five options for you to choose from in this lucky room:");
+        const char *actions[]=
+        {
+                "1.Fight a monster\n",
+                "2.Walk to the desk\n",
+                "3.Talk to the glowing red orb\n",
+                "4.Pick up a gas lamp\n",
+                "5.Scream for help\n"
+        };
+       
+        int choice;
+	const int num= 5;
+	int guess = 0;
+	char answer[]= "a secret";
+       	char riddle[20];	
+
+	srand(time(NULL));
+
+        while(1)
+        {
+		int randNum = 1+ (rand()%5);
+		for(int i = 0;i < num;i++)
+		{
+			printf("%s", actions[i]);
+		}
+		printf("What will you choose?\n");
+		scanf("%d", &choice);
+		while (getchar() != '\n');
+		printf("\n");
+
+		switch(choice)
+		{
+			case 1:
+				puts("A MONSTER HAS APPEARED!");
+				puts("Pick a number between 1 and 5, if you choose right, you win the fight!"); 
+	
+				scanf("%d",&guess);
+
+				if(guess == randNum)
+				{
+					puts("CONGRATS YOU HAVE DEFEATED THE MONSTER!\n");
+				}
+				else
+				{
+					puts("OH NO! The monster beat you & stole your pants!\n");
+				}
+				break;
+			case 2:
+				puts("A glowing scroll has appearred on the desk, but the writing is too small to read.");
+				puts("*Looks in drawer* AH a magnifying glass!");
+				puts("It seems to be a riddle!");
+				puts("\"If you have me, you will want to share me. If you share me, you will no longer have me");
+				puts("What is your answer?");
+				fgets(riddle, sizeof(riddle), stdin); 
+				riddle[strcspn(riddle, "\n")] = '\0';
+
+        if (strcasecmp(answer, riddle) == 0) 
+				{
+				    	puts("YOU'VE SOLVED THE RIDDLE!\n");
+				} 
+				else 
+				{
+		    			puts("UH OH, You've guessed wrong, the scroll has vanished!\n");
+                		}
+               			 break;
+			case 3:
+				puts("Hi, I was hopi-");
+                		puts("Red Orb:\"EWW A HUMAN, GET OUT OF MY SIGHT!!!!!\"");
+                		puts("*A TRAPPED DOOR OPENED BENEATH YOU*");
+                		puts("Red Orb:\"MUAHAHHAAHA, GOOD RIDDANCE!!!\"\n");
+                		break;
+			case 4:
+				puts("You picked up the gas lamp, but nothing happened...");
+				puts("*Puts it back down*\n");
+				break;
+			
+			case 5:
+				puts("HEEEEEEEELLLLLLLLLLLLLLPPPPPP!!");
+				puts("*a lady in a white dress appears and firmly hugs you*");
+				puts("*Without saying a word, she vanishes just as fast as she came*");
+				puts("what the hell was that????");
+				puts("*continues screaming, hopefully she comes back*\n");
+				break;
+
+            		default:
+                		puts("Please choose one of the options.");	
+}
+		if(choice == 3)
+		{		 
+			break;
+		}
+}
+
 //Room 23 Function
 void room23Logic(){
 	//make 4 indiidual choices
@@ -1225,6 +1447,7 @@ void room23Logic(){
 		printf("Choice count %d\n",choice);
 		puts("You do something...unexpected. Your moves and actions were so crazy that somehow you ended up in the vaccume of space. Despite being cool, you drift into the void of space until you loose consiousness. You wake up back where you started\n\n");
 	}
+
 }
 
 // Anushka's function
@@ -1521,7 +1744,6 @@ int rps_game(char handGuess, char cpuGuess)
 
 }
 
-
 //===============================================================================================
 //Nestor's Function
 void room3(void)
@@ -1660,6 +1882,113 @@ void room3(void)
 
 
 //===============================================================================================
+void Detectivegame() {
+    srand(time(NULL));
+    int choice;
+    int gameOver = 0;
+    int cluesFound = 0;
+    int mysterySolved = 0;
+    char *clues[5];  
+
+    printf("Welcome to the Detective Mystery Game!\n");
+    printf("You are a detective solving a robbery case that went terribly wrong.\n");
+    printf("Your goal is to investigate, find clues, and solve the mystery before the case goes cold.\n");
+    printf("Good luck, Detective!\n");
+
+    while (!gameOver) {
+        puts("\nWhat would you like to do?");
+        puts("1. Investigate the crime scene");
+        puts("2. Interview a witness");
+        puts("3. Analyze evidence in the lab");
+        puts("4. Follow a suspicious lead");
+        puts("5. Close the case");
+        puts("Enter your choice:");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("\nYou arrive at the crime scene. It looks like a robbery gone wrong.\n");
+                int sceneClue = randomOutcome();
+                if (sceneClue == 0) {
+                    printf("You find a fingerprint on the window ledge. It's a lead!\n");
+                    clues[cluesFound] = "Fingerprint on the window ledge";
+                    cluesFound++;
+                } else {
+                    printf("You search the area but find nothing useful.\n");
+                }
+                break;
+
+            case 2:
+                printf("\nYou interview a witness.\n");
+                int witnessClue = randomOutcome();
+                if (witnessClue == 0) {
+                    printf("The witness remembers seeing a red car near the scene!\n");
+                    clues[cluesFound] = "Witness saw a red car";
+                    cluesFound++;
+                } else {
+                    printf("The witness is too shaken to recall any helpful details.\n");
+                }
+                break;
+
+            case 3:
+                printf("\nYou head to the forensics lab to analyze the evidence.\n");
+                int labClue = randomOutcome();
+                if (labClue == 0) {
+                    printf("The fingerprint matches a known criminal from previous cases!\n");
+                    clues[cluesFound] = "Fingerprint matched a known criminal";
+                    cluesFound++;
+                } else {
+                    printf("The evidence is inconclusive. You'll need more clues to make a breakthrough.\n");
+                }
+                break;
+
+            case 4:
+                printf("\nYou decide to follow up on the lead about the red car.\n");
+                int leadOutcome = randomOutcome();
+                if (leadOutcome == 0) {
+                    printf("The car is traced back to a warehouse in the industrial district. You find more evidence linking it to the suspect!\n");
+                    clues[cluesFound] = "Red car traced to warehouse";
+                    cluesFound++;
+                } else {
+                    printf("The lead goes cold. No further information is uncovered.\n");
+                }
+                break;
+
+            case 5:
+                if (cluesFound >= 3) {
+                    printf("\nYou have gathered enough clues to close the case.\n");
+                    printf("The criminal has been apprehended, and the case is now solved. Great job, Detective!\n");
+                    mysterySolved = 1;
+                } else {
+                    printf("You don't have enough evidence to close the case. Keep investigating.\n");
+                    displayClues(clues, cluesFound);
+                }
+                break;
+
+            default:
+                printf("\nInvalid choice. Please try again.\n");
+                break;
+        }
+        if (mysterySolved) {
+            gameOver = 1;
+        }
+    }
+}
+
+int randomOutcome() {
+    return rand() % 2;
+}
+
+void displayClues(char *clues[], int cluesFound) {
+    printf("\nClues collected so far:\n");
+    if (cluesFound == 0) {
+        printf("No clues found yet. Keep investigating!\n");
+    } else {
+        for (int i = 0; i < cluesFound; i++) {
+            printf("- %s\n", clues[i]);
+        }
+    }
+}
 
 //
 
