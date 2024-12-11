@@ -74,6 +74,17 @@ void room18(void);
 void room13sid(void);
 
 
+//Function prototypes for room 14
+void torchEquip(int stats[], int size, char holding[][10], int rows);
+void helmetEquip(int stats[], int size, char holding[][10], int rows);
+void swordEquip(int stats[], int size, char holding[][10], int rows);
+void shieldEquip(int stats[], int size, char holding[][10], int rows);
+void spearEquip(int stats[], int size, char holding[][10], int rows);
+int lever(int stats[], int size, char holding[][10], int rows, int position);
+int bossFight(int stats[], int size, char holding[][10], int rows, int position);
+int battle(int stats[], int size, char holding[][10], int rows, int position);
+int direction(int position);
+
 
 
 
@@ -1947,11 +1958,108 @@ int main(int argc, char *argv[])
 			}
 			case 14:
 			{
-				puts("room14");
 // Omar Flores
-				printf("This is Omar's Room");
-				break;
+				//Arrays to hold players info
+				int stats[4] = {0,0,0,0}; // {attack, deffense, visbility, kills}
+				char holding[4][10] = {"Left Hand", "Right Hand", "Back", "Head"}; //What the player is holding				
+				
+				int position = 0; // Position of player within the room
+				int destination; // Where the player wants to go 
+				//Positions & Destinations : 1-Entrance 2-East 3-West 4-Center 5-Dragon
+
+				printf("\nYou the open door to see a pitch black room.\n");
+				printf("Quickly, you shut the door behind preventing the water coming in.\n");
+				printf("As the door shuts you are engulfed in darkness! You can't see anything around you as if you were blind..\n");
+
+				while (stats[3] == 0)
+				{
+					switch(position)
+					{
+						case 0:
+						{
+							//(Re)Starts player off with nothing
+							stats[0] = 0;
+							stats[1] = 0;
+							stats[2] = 0;					
+							
+							strcpy(holding[0], "Left Hand");
+							strcpy(holding[1], "Right Hand");
+							strcpy(holding[2], " ");
+							strcpy(holding[3], "Head");
+
+							printf("\nSuddenly in the darkness a flame apears infront of you. \nAs you step closer, you realize it is a lit torch laying on the floor.\n");
+							position = 1;
+							break;
+						}
+						//Positions: 1-Entrance 2-East 3-West 4-Center 5-Dragon
+						case 1: //Entrance 
+						{
+							if (stats[2] == 1)
+							{
+								helmetEquip(stats, 4, holding, 4);
+							}
+							torchEquip(stats, 4, holding, 4);
+							
+							destination = direction(position); //i know these two lines are redundent but it makes it easier to follow
+							position = destination;
+							if (destination == 5)
+							{	
+								position = 4;
+							}
+							
+							break;
+						}
+						case 2://East side of room
+						{
+							swordEquip(stats, 4, holding, 4);
+							shieldEquip(stats, 4, holding, 4);
+							
+							destination = direction(position);
+							position = destination;
+							if (destination == 3)
+							{	
+								position = 4;
+							}
+							break;
+						}
+						case 3://West side of room
+						{
+							spearEquip(stats, 4, holding, 4);
+							
+							destination = direction(position);
+							position = destination;
+							if (destination == 2)
+							{	
+								position = 4;
+							}
+							break;
+						}
+						case 4://center of room
+						{
+							if (stats[2] < 2)
+							{
+								position = lever(stats, 4, holding, 4, position);
+								break;				
+							}
+							position = direction(position); //4-left, 6-right, 8-forward, 2-back
+							break;
+						}
+						case 5://DRAGON! 
+						{
+							position = bossFight(stats, 4, holding, 4, position);
+							break;
+						}
+						default:
+						{
+							puts("You should not be here! You broke my code.");
+						}
+					}
+					//break;
+
+				}
+				//break;
 			}
+
 			case 15:
 			{
 				puts("room15");
@@ -4439,3 +4547,488 @@ void room24(void) {
 }
 //========
 
+
+//room 14 functions ==================================================================
+int direction(int position)
+{
+	int dir; //4-left, 6-right, 8-forward, 2-back
+	int location; //Positions: 1-Entrance 2-East 3-West 4-Center 5-Dragon
+
+	printf("\nWhich direction do you want to go?\n\n         FORWARD \n         Press 8\n\n LEFT      ^      RIGHT \nPress 4  < + >   Press 6\n           v\n\n  	  BACK\n         Press 2\n\n");
+	scanf("%d", &dir);
+	switch(dir)
+	{
+		case 4:
+		{
+			location = 3;
+			break;
+		}
+		case 6:
+		{
+			location = 2;
+			break;
+		}
+		case 8:
+		{
+			location = 5;
+			break;
+		}
+		case 2:
+		{
+			location = 1;
+			break;
+		}
+		default:
+		{
+			puts("Invalid Choice");
+		}
+	}
+	if(location == position)
+	{	
+		printf("You hit the wall...\n");
+	}
+	return location;
+}
+
+void torchEquip(int stats[], int size, char holding[][10], int rows)
+{
+	if (stats[2] != 1 && stats[2] != 3)
+	{
+		puts("         .:              ");
+		puts("        .-+:             ");
+		puts("      :-..+*=.           ");
+		puts("     .=+=-.-+=           ");
+		puts("      .+*++=:-.          ");
+		puts("       =*=-+=            ");
+		puts("    .:---.:=+=-===.      ");
+		puts("   :=-::-===-==-=.       ");
+		puts("   ..-+-----+-.::.       ");
+		puts("     :+===--=+--+-.      ");
+		puts("      .::-=---=+++...    ");
+		puts("       ..-=-----=-.-.    ");
+		puts("     .--=-------=.-:     ");
+		puts("      .=-:::::-=:.--.    ");
+		puts("     .-=-==-:::::--=-    ");
+		puts("       :=-.::::-----:    ");
+		puts("         .+#####*=.      ");
+		puts("          :#%%%##:       ");
+		puts("           =*+**+        ");
+		puts("           -*+**+        ");
+		puts("           :****=        ");
+		puts("           :****:        ");
+		puts("           :****:        ");
+		puts("           :****:        ");
+		puts("           :****:        ");
+		puts("           :****:        ");
+		puts("           :****:        ");
+		puts("           :****:        ");
+		puts("           :****:        ");
+		puts("            :==:         ");
+
+		int torch;
+		printf("\nWould you like to pick up the torch? \n ");
+		printf("Press 1 for YES or Press 2 for NO:");
+		scanf("%d", &torch);
+		if (torch == 1)
+		{
+			stats[2]++;
+			strcpy(holding[0], "Torch");
+			printf("\nYou pick up the torch with your left hand.\n");
+		}
+		else 
+		{
+			printf("\nYou leave the Torch on the ground.\n");
+		}
+		return;
+	}
+	return;
+}
+
+void helmetEquip(int stats[], int size, char holding[][10], int rows)
+{
+	if (stats[1] == 1 || stats[1] == 3)
+	{
+
+		printf("There is nothing here.\n");
+	}
+	else
+	{
+		puts("                   _.--.    .--._");
+		puts("                 .\"  .\"      \".  \".");
+		puts("                ;  .\"    /\\    \".  ;");
+		puts("                ;  '._,-/  \\-,_.`  ;");
+		puts("                \\  ,`  / /\\ \\  `,  /");
+		puts("                 \\/    \\/  \\/    \\/");
+		puts("                 ,=_    \\/\\/    _=,");
+		puts("                 |  \"_   \\/   _\"  |");
+		puts("                 |_   '\"-..-\"'   _|");
+		puts("                 | \"-.        .-\" |");
+		puts("                 |    \"\\    /\"    |");
+		puts("                 |      |  |      |");
+		puts("                 |      |  |      |");
+		puts("                 '_     |  |     _' ");
+		puts("                   \"-.  |  |  .-\"");
+		puts("                      \"-'--'-\"");
+
+		int helmet;
+		puts("\nThe light of your tourch reflects on something metalic in the wall.\n You have found a secret helmet.\n");
+		printf("\nWould you like to pick up the helmet?\n ");
+		printf("Press 1 for YES or Press 2 for NO:");
+		scanf("%d", &helmet);
+		if (helmet == 1)
+		{
+			stats[1]++;
+			strcpy(holding[3], "Helmet");
+			printf("\n**** You pick up the helmet and place it on your head ****\n");
+		}
+		else 
+		{
+			printf("\n**** You leave the helmet ****\n");
+		}
+	}
+	return;
+}
+
+void swordEquip(int stats[], int size, char holding[][10], int rows)
+{
+	if (stats[0] != 1 && stats[0] != 3)
+	{
+		puts("               /\\");
+		puts("              //\\\\");
+		puts("             //__\\\\");
+		puts("             \\\\__//");
+		puts("             [|__|]");
+		puts("             [|__|]");
+		puts("             [|__|]");
+		puts("  /)         [|__|]        (\\");
+		puts(" //\\_________[|__|]________/\\\\");
+		puts(" ))__________||__||_________((");
+		puts("<_/         [  \\/  ]       \\_>");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            || || ||");
+		puts("            \\\\ || //");
+		puts("             \\\\||//");
+		puts("              \\\\//");
+		puts("          ____-\\/-____");
+		puts("              -__-");
+		puts("             /    \\");
+		
+		int sword;
+		printf("\nWould you like to pick up the sword? \n ");
+		printf("Press 1 for YES or Press 2 for NO:");
+		scanf("%d", &sword);
+		if (sword == 1)
+		{
+			stats[0]++;
+			strcpy(holding[1], "Sword");
+			printf("\n**** You take the sword with you ****\n");
+		}
+		else 
+		{
+			printf("\n**** You leave the sword ****\n");
+		}
+		return;
+	}
+	else if (stats[1] != 2 && stats[1] != 3)
+	{
+		shieldEquip(stats, 4, holding, 4);
+
+	}
+	else
+	{
+		printf("There is nothing here...\n");
+	}
+	return;
+}
+
+void shieldEquip(int stats[], int size, char holding[][10], int rows)
+{
+	if (stats[1] != 2 && stats[1] != 3)
+	{
+		puts(" _________________________ ");
+		puts("|<><><>     |  |    <><><>|");
+		puts("|<>         |  |        <>|");
+		puts("|           |  |          |");
+		puts("|  (______ <\\-/> ______)  |");
+		puts("|  /_.-=-.\\| \" |/.-=-._\\  |");
+		puts("|   /_    \\(o_o)/    _\\   |");
+		puts("|    /_  /\\/ ^ \\/\\  _\\    |");
+		puts("|      \\/ | / \\ | \\/      |");
+		puts("|_______ /((( )))\\ _______|");
+		puts("|      __\\ \\___/ /__      |");
+		puts("|--- (((---'   '---))) ---|");
+		puts("|           |  |          |");
+		puts("|           |  |          |");
+		puts(":           |  |          :");
+		puts(" \\<>        |  |       <>/ ");
+		puts("  \\<>       |  |      <>/  ");
+		puts("   \\<>      |  |     <>/   ");
+		puts("    `\\<>    |  |   <>/'    ");
+		puts("      `\\<>  |  |  <>/'     ");
+		puts("        `\\<>|  |<>/'       ");
+		puts("          `-.  .-`         ");
+		puts("            '--'           ");
+
+		int shield;
+		printf("\nWould you like to pick up the shield? \n ");
+		printf("Press 1 for YES or Press 2 for NO:");
+		scanf("%d", &shield);
+		if (shield == 1)
+		{
+			stats[1] += 2;
+			strcpy(holding[2], "Shield");
+			printf("\n**** You pick up the shield and carry it on your back ****");
+		}
+		else 
+		{
+			printf("\n**** You leave the Shield ****\n");
+		}
+		return;
+	}
+	return;
+}
+
+void spearEquip(int stats[], int size, char holding[][10], int rows)
+{
+	if (stats[0] != 2 && stats[0] != 3)
+	{
+		puts("     /\\");
+		puts("    //\\\\");
+		puts("   //  \\\\");
+		puts("  //    \\\\");
+		puts("  \\\\    //");
+		puts("   \\\\  //");
+		puts("    \\\\//");
+		puts(" _  ||||  _");
+		puts("/(  ||||  )\\");
+		puts("\\\\\\_[\\/]_///");
+		puts(" \\\\_<()>_//");
+		puts("  \\/[\\\\]\\/");
+		puts("    [//]");
+		puts("    [\\\\]");
+		puts("    [//]");
+		puts("    ||||");
+		puts("    ||||");
+		puts("    ||||");
+		puts("    ||||");
+		puts("    ||||");
+		puts("    ||||");
+		puts("    ||||");
+		puts("    ||||");
+		puts("    ||||");
+		puts("    ||||");
+		puts("    ||||");
+		puts("    ||||");
+		puts("    ||||");
+		puts("    ||||");
+		puts("    ||||");
+		puts("    ||||");
+		puts("    ||||");
+		puts("    ||||");
+		puts("    [\\\\]");
+		puts("    [//]");
+		puts("    (__)");
+
+		int spear;
+		printf("\nWould you like to pick up the spear? \n ");
+		printf("Press 1 for YES or Press 2 for NO: ");
+		scanf("%d", &spear);
+		if (spear == 1)
+		{
+			stats[0] += 2;
+			strcpy(holding[1], "Spear");
+			printf("\n**** You pick up the spear ****\n");
+		}
+		else 
+		{
+			printf("\n**** You leave the spear ****\n");
+		}
+		return;
+	}
+	else
+	{
+		printf("There is nothing here...\n");
+	}
+	return;
+}
+
+
+int lever(int stats[], int size, char holding[][10], int rows, int position)
+{
+	puts("      ___ (@)");
+	puts("     |.-.|/");
+	puts("     || |/");
+	puts("     || /|");
+	puts("     ||/||");
+	puts("     || ||");
+	puts("     ||_||");
+	puts("     '---'");
+
+	int press;
+	puts("\nYou spot a rusted lever protruding out from a weathered stone pillar. ");
+	printf("\nDo you pull the lever? \n ");
+	printf("Press 1 for YES or Press 2 for NO: ");
+	scanf("%d", &press);
+	if (press == 1)
+	{
+		stats[2] += 2;
+		printf("\nThe ceiling beings to open and sunlight starts to fill the room.\n");
+		printf("You can finally see clearly, revealing the room to actually be an enormous cavern, and to your horror before you sleeps a massive DRAGON! \nThe Dragon begins to wake from the light of the cieling opening.\n");
+		return 5;
+	}
+	else 
+	{
+		printf("\n**** You dont pull the lever ****\n");
+		return direction(position);
+	}
+	return 4;
+}
+
+int bossFight(int stats[], int size, char holding[][10], int rows, int position)
+{
+	puts("     |\\                                                              /|     ");
+	puts("     | \\                                                            / |     ");
+	puts("     |  \\                                                          /  |     ");
+	puts("     |   \\                                                        /   |     ");
+	puts("     |    \\                                                      /    |     ");
+	puts("_____)     \\                                                    /     (____ ");
+	puts("\\           \\                                                 /          / ");
+	puts(" \\           \\                                                /          /  ");
+	puts("  \\           `--_____                                _____--'          /   ");
+	puts("   \\                  \\                              /                 /    ");
+	puts("____)                   \\                            /                 (____ ");
+	puts("\\                       \\        /|      |\\        /                      / ");
+	puts(" \\                       \\      | /      \\ |      /                      /  ");
+	puts("  \\                       \\     ||        ||     /                      /   ");
+	puts("   \\                       \\    | \\______/ |    /                      /    ");
+	puts("    \\                       \\  / \\        / \\  /                      /     ");
+	puts("    /                        \\| (*\\  \\/  /*) |/                       \\     ");
+	puts("   /                          \\   \\| \\/ |/   /                         \\    ");
+	puts("  /                            |   |    |   |                           \\   ");
+	puts(" /                             |\\ _\\____/_ /|                            \\  ");
+	puts("/______                       | | \\)____(/ | |                      ______\\ ");
+	puts("       )                      |  \\ |/vv\\| /  |                     (        ");
+	puts("      /                      /    | |  | |    \\                     \\       ");
+	puts("     /                      /     ||\\^^/||     \\                     \\      ");
+	puts("    /                      /     / \\====/ \\     \\                     \\     ");
+	puts("   /_______           ____/      \\________/      \\____           ______\\    ");
+	puts("           )         /   |       |  ____  |       |   \\         (           ");
+	puts("           |       /     |       \\________/       |     \\       |           ");
+	puts("           |     /       |       |  ____  |       |       \\     |           ");
+	puts("           |   /         |       \\________/       |         \\   |           ");
+	puts("           | /            \\      \\ ______ /      /______..    \\ |           ");
+	puts("           /              |      \\\\______//      |        \\     \\           ");
+	puts("                          |       \\ ____ /       |LLLLL/_  \\                ");
+	puts("                          |      / \\____/ \\      |      \\   |               ");
+	puts("                          |     / / \\__/ \\ \\     |     __\\  /__             ");
+	puts("                          |    | |        | |    |     \\      /             ");
+	puts("                          |    | |        | |    |      \\    /              ");
+	puts("                          |    |  \\      /  |    |       \\  /               ");
+	puts("                          |     \\__\\    /__/     |        \\/                ");
+	puts("                         /    ___\\  )  (  /___    \\                         ");
+	puts("                        |/\\/\\|    )      (    |/\\/\\|                         ");
+	puts("                        ( (  )                (  ) )                         ");
+																						  
+	if (stats[2] > 1)
+	{
+		puts("\nThe cavern shakes as the dragon emerges from the shadows. \nIts eyes blaze like twin suns, locking onto you with a predatory intensity that freezes your blood. \nThe deep rumble of its growl begins as a tremor, building into a guttural roar that reverberates through the air, shaking loose dust and stone from the ceiling. \nEach exhale carries the scent of charred ash and sulfur. \n");
+		
+		position = battle(stats, 4, holding, 4, position);
+		return position;
+	}
+	//Players with only Torches only get one chance to kill dragon
+	else if(stats[2] == 1) 
+	{
+		puts("\nAs you approach deeper into the cavern, the faint glow of your torch catches the glint of massive scales. \nA golden eye snaps open, locking onto you.\nA guttural growl rumbles through the air, vibrating in your chest and sending shivers down your spine. \nYou have only one fleeting moment to act before it fully awakens and unleashes its furry. \n");
+		stats[0] = 1;
+		position = battle(stats, 4, holding, 4, position);
+		return position;
+	}
+	else
+	{
+		puts("\nA guttural growl rumbles through the air, vibrating in your chest like a death knell. \nThe sound of scales scraping against stone grows close. \nSuddenly, jagged fangs pierce through your flesh. \nYou're swallowed whole into the void and your screams lost to the abyss.\n");
+		puts("\n...You have died...\n");
+		return 0;
+	}
+	return 0;
+}
+
+int battle(int stats[], int size, char holding[][10], int rows, int position)
+{
+	srand(time(NULL));
+	int dragonHP = (rand() % 4) + 1; //randomly generates dragons HP
+	int attack = stats[0];
+	int defense = stats[1];
+	int revive = 2;
+	while (dragonHP > 0 && attack > 0 && defense > 0) //Keeps looping until Dragon's HP, Players Attack, or Players Defense reaches 0
+	{
+		if (attack > 2)
+		{
+			printf("\nYou throw the spear with all your might, and it strikes the dragon’s side, lodging between its massive scales. \nThe beast roars, shaking the cavern as molten blood begins to drip from the wound.\n");
+			printf("\n**** You have lost your Spear ****\n");
+			strcpy(holding[1], "Sword");
+		}
+		else
+		{
+			strcpy(holding[0], holding[1]);
+			printf("\nYou charge directly towards the dragon and unleash a powerful swing of your %s, putting every once of strength behind the strike.", holding[0]);
+		}
+		dragonHP--;
+		attack--;
+		
+		if (defense > 2 && dragonHP != 0)
+		{
+			printf("\nThe Dragon whips it's tail crashing into your shield with a thunderous impact, shattering it into splinters and sending you stumbling backward.\n");
+			printf("\n**** You have lost your Shield ****\n");
+			strcpy(holding[2], holding[3]);
+			defense--;
+		}
+		else
+		{
+			strcpy(holding[2], holding[3]);
+			printf("\nEnraged the Dragon lunges at you and hitting you directly on your %s, throwing you across the room.\n", holding[2]);
+			strcpy(holding[3], "Head");
+		}
+		defense--;
+	}
+
+	position = 0;
+	if (dragonHP == 0)
+	{
+		puts("\nWith a final, shuddering roar, the dragon collapses, its massive body shaking the ground as its wings fall limp. \nIts glowing eyes dim like fading embers, and the cavern falls silent as the mighty beast draws its last breath.\n\n**** You have defeated the dragon ****\n");
+		stats[3]++;
+		return position;
+	}
+	puts("\n**** You have died ****\n");
+	
+	printf("Would you like to try again? \nPress 1 for YES or Press 2 for NO: ");
+	scanf("%d", &revive);
+	if (revive == 2)
+	{
+		stats[3]++;
+	}
+	
+	return position;
+}
+//===========================================================================
